@@ -1,4 +1,4 @@
-package com.sgre.eventos.domain;
+package com.sgre.model.riesgo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,10 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "evento")
-public class Evento {
+@Table(name = "riesgo")
+public class Riesgo {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -18,10 +17,6 @@ public class Evento {
 	private String titulo;
 	
 	private String descripcion;
-	
-	public Evento() {
-		
-	}
 
 	public Long getId() {
 		return id;
