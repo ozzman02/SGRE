@@ -38,5 +38,10 @@ public class AccionCorrectiva {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	@Override
+	public String toString() {
+		return "AccionCorrectiva [id=" + id + ", descripcion=" + descripcion + "]";
+	}
 	
 }

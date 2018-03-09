@@ -20,7 +20,7 @@ public class CaracterDelRiesgo {
 	@Column(name="descripcion", nullable=false)
 	private String descripcion;
 	
-	@Column(name="detalle", nullable=false)
+	@Column(name="detalle", nullable=true)
 	private String detalle;
 
 	@OneToOne(mappedBy="caracter_del_riesgo")
@@ -52,6 +52,11 @@ public class CaracterDelRiesgo {
 
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
+	}
+
+	@Override
+	public String toString() {
+		return "CaracterDelRiesgo [id=" + id + ", descripcion=" + descripcion + ", detalle=" + detalle + "]";
 	}
 
 }

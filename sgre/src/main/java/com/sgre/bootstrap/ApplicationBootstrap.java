@@ -2,6 +2,7 @@ package com.sgre.bootstrap;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -307,27 +308,27 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
 	}
 	
 	private void cargarRiesgos() {
-		CategoriaEventoPerdida categoriaEventoPerdida = new CategoriaEventoPerdida();
-		categoriaEventoPerdida.setDescripcion("Fraude interno");
 		
-		LineaDeNegocio lineaDeNegocio = new LineaDeNegocio();
-		lineaDeNegocio.setTipo("Finanzas corporativas");
-		lineaDeNegocio.setDescripcion("Finanzas corporativas");
+		Optional<CategoriaEventoPerdida> categoriaEventoPerdida = categoriaEventoPerdidaRepository.findById(1L);
+		System.out.println(categoriaEventoPerdida.get().toString());
 		
-		CaracterDelRiesgo caracterDelRiesgo = new CaracterDelRiesgo();
-		caracterDelRiesgo.setDescripcion("Pérdida ocurrida individual");
-		caracterDelRiesgo.setDetalle("");
+		Optional<LineaDeNegocio> lineaDeNegocio = lineaDeNegocioRepository.findById(1L);
+		System.out.println(lineaDeNegocio.get().toString());
 		
-		Area area = new Area();
-		area.setDescripcion("Proceso");
+		Optional<CaracterDelRiesgo> caracterDelRiesgo = caracterDelRiesgoRepository.findById(1L);
+		System.out.println(caracterDelRiesgo.get().toString());
 		
-		RiesgoVinculado riesgoVinculado = new RiesgoVinculado();
-		riesgoVinculado.setDescripcion("Crédito");
+		Optional<Area> area = areaRepository.findById(1L);
+		System.out.println(area.get().toString());
 		
-		Responsable responsable = new Responsable();
-		responsable.setNombre("Sergio");
-		responsable.setApellido("Santamaria");
-		responsable.setPuesto("Ingeniero");
+		Optional<RiesgoVinculado> riesgoVinculado = riesgoVinculadoRepository.findById(1L);
+		System.out.println(riesgoVinculado.get().toString());
+		
+		Optional<Responsable> responsable = responsableRepository.findById(1L);
+		System.out.println(responsable.get().toString());
+		
+		Optional<AccionCorrectiva> accionCorrectiva = accionCorrectivaRepository.findById(1L);
+		System.out.println(accionCorrectiva.get().toString());
 		
 		Riesgo riesgo = new Riesgo();
 		
@@ -338,15 +339,18 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
 		riesgo.setFecha_inicio(new Date());
 		riesgo.setAplica_cuenta_contable(AplicaCuentaContable.SI);
 		riesgo.setPlazo_ejecucion("2 Meses");
-		riesgo.setCategoria_evento_perdida(categoriaEventoPerdida);
-		riesgo.setLinea_de_negocio(lineaDeNegocio);
-		riesgo.setCaracter_del_riesgo(caracterDelRiesgo);
-		riesgo.setArea(area);
+		riesgo.setCategoria_evento_perdida(categoriaEventoPerdida.get());
+		riesgo.setLinea_de_negocio(lineaDeNegocio.get());
+		riesgo.setCaracter_del_riesgo(caracterDelRiesgo.get());
+		riesgo.setArea(area.get());
+		riesgo.setAccion_correctiva(accionCorrectiva.get());
 		riesgo.setImpacto_del_riesgo(ImpactoDelRiesgo.ALTO);
-		riesgo.setRiesgo_vinculado(riesgoVinculado);
-		riesgo.setResponsable(responsable);
+		riesgo.setRiesgo_vinculado(riesgoVinculado.get());
+		riesgo.setResponsable(responsable.get());
 		
 		riesgoRepository.save(riesgo);
+		
+		System.out.println(riesgo);
 	}
 	
 	@Override

@@ -53,5 +53,10 @@ public class LineaDeNegocio {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	@Override
+	public String toString() {
+		return "LineaDeNegocio [id=" + id + ", descripcion=" + descripcion + ", tipo=" + tipo + "]";
+	}
 	
 }

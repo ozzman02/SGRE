@@ -64,5 +64,10 @@ public class Responsable {
 	public void setPuesto(String puesto) {
 		this.puesto = puesto;
 	}
+
+	@Override
+	public String toString() {
+		return "Responsable [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", puesto=" + puesto + "]";
+	}
 		
 }

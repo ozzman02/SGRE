@@ -94,31 +94,31 @@ public class Riesgo {
 	@Column(name="observaciones_generales", nullable=true)
 	private String observaciones_generales;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="categoria_evento_perdida_id", unique=true)
 	private CategoriaEventoPerdida categoria_evento_perdida;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="linea_de_negocio_id", unique=true)
 	private LineaDeNegocio linea_de_negocio;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="caracter_del_riesgo_id", unique=true)
 	private CaracterDelRiesgo caracter_del_riesgo;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="area_id", unique=true)
 	private Area area;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="accion_correctiva_id", unique=true)
 	private AccionCorrectiva accion_correctiva;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="riesgo_vinculado_id", unique=true)
 	private RiesgoVinculado riesgo_vinculado;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="responsable_id", unique=true)
 	private Responsable responsable;
 	
@@ -348,6 +348,24 @@ public class Riesgo {
 
 	public void setResponsable(Responsable responsable) {
 		this.responsable = responsable;
+	}
+
+	@Override
+	public String toString() {
+		return "Riesgo [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", frecuencia=" + frecuencia
+				+ ", probabilidad=" + probabilidad + ", controles_de_riesgo=" + controles_de_riesgo
+				+ ", impacto_del_riesgo=" + impacto_del_riesgo + ", fecha_inicio=" + fecha_inicio
+				+ ", fecha_conclusion=" + fecha_conclusion + ", fecha_descubrimiento=" + fecha_descubrimiento
+				+ ", fecha_registro_contable=" + fecha_registro_contable + ", monto_bruto_perdida="
+				+ monto_bruto_perdida + ", tipo_moneda_perdida_bruta=" + tipo_moneda_perdida_bruta
+				+ ", tipo_cambio_perdida_bruta=" + tipo_cambio_perdida_bruta + ", monto_neto_perdida="
+				+ monto_neto_perdida + ", tipo_moneda_perdida_neta=" + tipo_moneda_perdida_neta
+				+ ", tipo_cambio_perdida_neta=" + tipo_cambio_perdida_neta + ", aplica_cuenta_contable="
+				+ aplica_cuenta_contable + ", notas_cuenta_contable=" + notas_cuenta_contable + ", plazo_ejecucion="
+				+ plazo_ejecucion + ", observaciones_generales=" + observaciones_generales
+				+ ", categoria_evento_perdida=" + categoria_evento_perdida + ", linea_de_negocio=" + linea_de_negocio
+				+ ", caracter_del_riesgo=" + caracter_del_riesgo + ", area=" + area + ", accion_correctiva="
+				+ accion_correctiva + ", riesgo_vinculado=" + riesgo_vinculado + ", responsable=" + responsable + "]";
 	}
 	
 }
