@@ -91,6 +91,11 @@ body#login h2 {
 	font-style: italic;
 }
 
+#btn-crear-riesgo {
+	margin-top: 25px;
+	float: right;	
+}
+
 .table-div {
 	padding-top: 25px;
 }
