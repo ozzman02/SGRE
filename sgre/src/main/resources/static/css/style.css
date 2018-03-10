@@ -92,7 +92,11 @@ body#login h2 {
 }
 
 #btn-crear-riesgo {
-	margin-top: 25px;
+	margin-top: 40px;	
+}
+
+.form-inline {
+	padding-top: 40px;
 	float: right;	
 }
 
