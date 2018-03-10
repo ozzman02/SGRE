@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> -->
+	<head>
+    	<meta charset="UTF-8"/>
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1"/>   
+    
+    	<!--  <link rel="icon" href="../static/myfavicon.ico" type="image/x-icon" th:href="@{/myfavicon.ico}"/>
+			<link rel="shortcut icon" href="../static/myfavicon.ico" type="image/x-icon" th:href="@{/myfavicon.ico}"/> -->   
+    
+    	<title>SGRE - Crear Riesgos</title>
+    	<link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    	<link href="../static/css/fa-svg-with-js.css" rel="stylesheet" th:href="@{/css/fa-svg-with-js.css}"/> 
+    	<link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>	
+  	</head>
+  	<body>
+    	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  			<a class="navbar-brand" href="#">SGRE</a>
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" 
+  				aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+  			<div class="collapse navbar-collapse" id="navbarColor01">
+    			<ul class="navbar-nav mr-auto">
+      				<li class="nav-item active"><a class="nav-link" href="#">Riesgos</a></li>
+      				<li class="nav-item"><a class="nav-link" href="#">Eventos</a></li>
+    			</ul>
+    			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
+          			<li><a class="not-active" href="#">Bienvenido Oscar Santamaria</a></li>
+            		<li><a href="#">Logout</a></li>
+          		</ul>
+  			</div>
+		</nav>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<form id="riesgo-form">
+  							<fieldset>
+  								 <legend>Crear Riesgo</legend>	
+    							<div class="form-group">
+      								<label for="titulo">Título</label>
+      								<input type="text" class="form-control" id="titulo" aria-describedby="" placeholder="Título">
+    							</div>
+    							<div class="form-group">
+      								<label for="descripcion">Descripción</label>
+      								<input type="text" class="form-control" id="descripcion" placeholder="Descripción">
+    							</div>
+    							<div class="form-group">
+      								<label for="categoriaEventoPerdida">Categoria de evento de pérdida</label>
+      								<select class="form-control" id="categoriaEventoPerdida">
+        								<option></option>
+        								<option>Fraude interno</option>
+        								<option>Fraude externo</option>
+        								<option>Relaciones laborales y seguridad en el puesto de trabajo</option>
+        								<option>Clientes, productos y prácticas empresariales</option>
+        								<option>Daños a activos materiales</option>
+        								<option>Interrupción del negocio y fallos en los sistemas</option>
+        								<option>Ejecución entrega y gestión de procesos</option>
+      								</select>
+    							</div>
+    							<div class="form-group">
+      								<label for="lineaDeNegocio">Liínea de negocio</label>
+      								<select class="form-control" id="lineaDeNegocio">
+        								<option></option>
+        								<option>Finanzas corporativas</option>
+        								<option>Finanzas de administraciones locales y públicas</option>
+        								<option>Banca de inversión</option>
+        								<option>Servicios de asesoramiento</option>
+        								<option>Tesorería por cuentas de terceros</option>
+        								<option>Tesorería posiciones propias</option>
+        								<option>Tesorería Tradicional</option>
+        								<option>Banca de Personas</option>
+        								<option>Banca Privada</option>
+        								<option>Banca de desarrollo minorista</option>
+        								<option>Banca corporativa</option>
+        								<option>Banca empresarial</option>
+        								<option>Banca de Desarrollo Comercial</option>
+        								<option>Banca de Segundo Piso</option>
+        								<option>Tarjetas de crédito y débito</option>
+        								<option>Administración y Adhesión de comercios</option>
+        								<option>Cobros, pagos y liquidación</option>
+        								<option>Administración de Fondos de Cesantía</option>
+        								<option>Administración de peaje bancario y otros</option>
+        								<option>Administración de fideicomisos</option>
+        								<option>Administración de Fondos de Pensión</option>
+        								<option>Custodia</option>
+        								<option>Comercialización de Seguros autoexpedibles</option>
+        								<option>Tecnología de la información y comunicación</option>
+        								<option>Cambios y transformaciones organizacionales</option>
+        								<option>Otros procesos Transversales a la Organización</option>
+      								</select>
+    							</div>
+    							<div class="form-group">
+      								<label for="caracterDelRiesgo">Caracter del riesgo</label>
+      								<select class="form-control" id="caracterDelRiesgo">
+        								<option></option>
+        								<option>Pérdida ocurrida individual</option>
+        								<option>Pérdida ocurrida repetitiva</option>
+        								<option>Pérdida estimada contablemente</option>
+      								</select>
+    							</div>
+    							<div class="form-group">
+      								<label for="area">Proceso o área a la que pertenece el riesgo</label>
+      								<select class="form-control" id="area">
+        								<option></option>
+        								<option>Área de negocio</option>
+        								<option>Proceso</option>
+        								<option>Subproceso</option>
+        								<option>Producto</option>
+      								</select>
+    							</div>
+    							<div class="form-group">
+      								<label for="frecuencia">Frecuencia</label>
+      								<input type="text" class="form-control" id="frecuencia" placeholder="Frecuencia">
+    							</div>
+    							<div class="form-group">
+      								<label for="probabilidad">Probabilidad</label>
+      								<input type="text" class="form-control" id="probabilidad" placeholder="Probabilidad">
+    							</div>
+    							<div class="form-group">
+      								<label for="controlesDeRiesgo">Controles de riesgo</label>
+      								<input type="text" class="form-control" id="controlesDeRiesgo" placeholder="Controles de riesgo">
+    							</div>
+    							<div class="form-group">
+      								<label for="impactoDelRiesgoSelect">Impacto del riesgo</label>
+      								<select class="form-control" id="impactoDelRiesgoSelect">
+      									<option></option>
+        								<option>Bajo</option>
+        								<option>Medio</option>
+        								<option>Alto</option>
+        								<option>Crítico</option>
+      								</select>
+    							</div>
+    							<div class="form-group">
+      								<label for="fechaInicio">Fecha de inicio</label>
+      								<input type="date" class="form-control" id="fechaInicio">
+    							</div>
+    							<div class="form-group">
+      								<label for="fechaConclusion">Fecha de conclusión</label>
+      								<input type="date" class="form-control" id="fechaConclusion">
+    							</div>
+    							<div class="form-group">
+      								<label for="fechaDescubrimiento">Fecha de descubrimiento</label>
+      								<input type="date" class="form-control" id="fechaDescubrimiento">
+    							</div>
+    							<div class="form-group">
+      								<label for="fechaRegistroContable">Fecha de registro contable</label>
+      								<input type="date" class="form-control" id="fechaRegistroContable">
+    							</div>
+    							<div class="form-group">
+      								<label for="montoBrutoPerdida">Monto bruto de la pérdida</label>
+      								<input type="text" class="form-control" id="montoBrutoPerdida" placeholder="Monto bruto de la pérdida">
+    							</div>
+    							<div class="form-group">
+      								<label for="monedaPerdidaBruta">Tipo de moneda de la pérdida bruta</label>
+      								<select class="form-control" id="monedaPerdidaBruta">
+        								<option></option>
+        								<option>₡ (colones)</option>
+        								<option>$ (dólares)</option>
+      								</select>
+    							</div>
+    							<div class="form-group">
+      								<label for="tipoCambioPerdidaBruta">Tipo de cambio de la pérdida bruta</label>
+      								<input type="text" class="form-control" id="tipoCambioPerdidaBruta" placeholder="Tipo de cambio de la pérdida bruta">
+    							</div>
+    							<div class="form-group">
+      								<label for="montoTotalRecuperado">Monto total recuperado</label>
+      								<input type="text" class="form-control" id="montoTotalRecuperado" placeholder="Monto total recuperado">
+    							</div>
+    							<div class="form-group">
+      								<label for="montoNetoPerdida">Monto neto de la pérdida</label>
+      								<input type="text" class="form-control" id="montoNetoPerdida" placeholder="Monto neto de la pérdida">
+    							</div>
+    							<div class="form-group">
+      								<label for="monedaPerdidaNeta">Tipo de moneda de la pérdida neta</label>
+      								<select class="form-control" id="monedaPerdidaNeta">
+        								<option></option>
+        								<option>₡ (colones)</option>
+        								<option>$ (dólares)</option>
+      								</select>
+    							</div>
+    							<div class="form-group">
+      								<label for="tipoCambioPerdidaNeta">Tipo de cambio de la pérdida neta</label>
+      								<input type="text" class="form-control" id="tipoCambioPerdidaNeta" placeholder="Tipo de cambio de la pérdida neta">
+    							</div>
+    							<div class="form-group">
+      								<label for="aplicaCuentaContable">Aplica cuenta contable</label>
+      								<select class="form-control" id="aplicaCuentaContable">
+        								<option></option>
+        								<option>Sí</option>
+        								<option>No</option>
+      								</select>
+    							</div>
+    							<div class="form-group">
+      								<label for="notasCuentaContable">Notas de la cuenta contable</label>
+      								<input type="text" class="form-control" id="notasCuentaContable" placeholder="Notas de la cuenta contable">
+    							</div>
+    							<div class="form-group">
+      								<label for="accionCorrectiva">Acción Correctiva</label>
+      								<select class="form-control" id="accionCorrectiva">
+        								<option></option>
+        								<option>Plan de acción</option>
+        								<option>Plan de contingencia</option>
+      								</select>
+    							</div>
+    							<div class="form-group">
+      								<label for="riesgoVinculado">Riesgo vinculado</label>
+      								<select class="form-control" id="riesgoVinculado">
+        								<option></option>
+        								<option>Crédito</option>
+        								<option>Mercado</option>
+        								<option>Crédito y Mercado</option>
+        								<option>Otros</option>
+      								</select>
+    							</div>
+								<div class="form-group">
+      								<label for="plazoEjecucion">Plazo de ejecución</label>
+      								<input type="text" class="form-control" id="plazoEjecucion" placeholder="Plazo de ejecución">
+    							</div>    							
+    							<div class="form-group">
+      								<label for="observaciones">Observaciones</label>
+      								<textarea class="form-control" id="observaciones" rows="3"></textarea>
+    							</div>
+    							<div class="form-group">
+      								<label for="responsable">Responsable</label>
+      								<select class="form-control" id="responsable">
+        								<option></option>
+        								<option>Responsable1</option>
+        								<option>Responsable2</option>
+        								<option>Responsable3</option>
+        								<option>Responsable4</option>
+      								</select>
+    							</div>
+    							<button type="submit" class="btn btn-primary">Guardar</button>
+  							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+    	<div class="custom-footer">
+      		<p>SUGEF &copy; 2018, Todos los derechos reservados</p>
+    	</div>
+    	<script src="../static/js/fontawesome-all.js" th:src="@{/js/fontawesome-all.js}"></script>
+    	<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    	<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+  	</body>
+</html>

@@ -72,6 +72,9 @@ public class Riesgo {
 	@Column(name="tipo_cambio_perdida_bruta", nullable=true)
 	private BigDecimal tipo_cambio_perdida_bruta;
 	
+	@Column(name="monto_total_recuperado", nullable=true)
+	private BigDecimal monto_total_recuperado;
+	
 	@Column(name="monto_neto_perdida", nullable=true)
 	private BigDecimal monto_neto_perdida;
 	

@@ -107,3 +107,8 @@ body#login h2 {
 .pagination {
 	padding-top: 25px;
 }
+
+#riesgo-form {
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
