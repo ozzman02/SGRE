@@ -20,9 +20,6 @@ public class CaracterDelRiesgo {
 	@Column(name="descripcion", nullable=false)
 	private String descripcion;
 	
-	@Column(name="detalle", nullable=true)
-	private String detalle;
-
 	@OneToOne(mappedBy="caracter_del_riesgo")
 	private Riesgo riesgo;
 	
@@ -46,17 +43,9 @@ public class CaracterDelRiesgo {
 		this.descripcion = descripcion;
 	}
 
-	public String getDetalle() {
-		return detalle;
-	}
-
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
-	}
-
 	@Override
 	public String toString() {
-		return "CaracterDelRiesgo [id=" + id + ", descripcion=" + descripcion + ", detalle=" + detalle + "]";
+		return "CaracterDelRiesgo [id=" + id + ", descripcion=" + descripcion + "]";
 	}
 
 }
