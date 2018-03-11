@@ -10,8 +10,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -28,6 +32,13 @@ public class RiesgoDBConfiguration {
 	@Autowired
 	private Environment env;
 
+	private DatabasePopulator databasePopulator() {
+		ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
+		resourceDatabasePopulator.setContinueOnError(true);
+		resourceDatabasePopulator.addScript(new ClassPathResource("data.sql"));
+		return resourceDatabasePopulator;
+	}
+	
 	@Bean
 	@Primary
 	public DataSource riesgoDataSource() {
@@ -37,7 +48,7 @@ public class RiesgoDBConfiguration {
 		dataSource.setUrl(env.getProperty("riesgos.datasource.url"));
 		dataSource.setUsername(env.getProperty("riesgos.datasource.username"));
 		dataSource.setPassword(env.getProperty("riesgos.datasource.password"));
-
+	
 		return dataSource;
 	}
 	
@@ -68,6 +79,7 @@ public class RiesgoDBConfiguration {
 
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(riesgoEntityManager().getObject());
+		DatabasePopulatorUtils.execute(databasePopulator(), riesgoDataSource());
 		
 		return transactionManager;
 	}
