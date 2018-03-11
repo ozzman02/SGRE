@@ -95,6 +95,10 @@ body#login h2 {
 	margin-top: 40px;	
 }
 
+#btn-crear-evento {
+	margin-top: 40px;	
+}
+
 .form-inline {
 	padding-top: 40px;
 	float: right;	

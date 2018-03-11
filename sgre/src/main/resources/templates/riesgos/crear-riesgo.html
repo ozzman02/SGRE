@@ -9,10 +9,10 @@
     	<!--  <link rel="icon" href="../static/myfavicon.ico" type="image/x-icon" th:href="@{/myfavicon.ico}"/>
 			<link rel="shortcut icon" href="../static/myfavicon.ico" type="image/x-icon" th:href="@{/myfavicon.ico}"/> -->   
     
-    	<title>SGRE - Modificar Riesgos</title>
-    	<link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    	<link href="../static/css/fa-svg-with-js.css" rel="stylesheet" th:href="@{/css/fa-svg-with-js.css}"/> 
-    	<link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>	
+    	<title>SGRE - Crear Riesgos</title>
+    	<link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    	<link href="../../static/css/fa-svg-with-js.css" rel="stylesheet" th:href="@{/css/fa-svg-with-js.css}"/> 
+    	<link href="../../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>	
   	</head>
   	<body>
     	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -24,7 +24,7 @@
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
       				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html">Riesgos</a></li>
-      				<li class="nav-item"><a class="nav-link" href="#">Eventos</a></li>
+      				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
           			<li><a class="not-active" href="#">Bienvenido Oscar Santamaria</a></li>
@@ -38,7 +38,7 @@
 					<div class="col-md-12">
 						<form id="riesgo-form">
   							<fieldset>
-  								 <legend>Modificar Riesgo</legend>	
+  								 <legend>Crear Riesgo</legend>	
     							<div class="form-group">
       								<label for="titulo">Título</label>
       								<input type="text" class="form-control" id="titulo" aria-describedby="" placeholder="Título">
@@ -100,6 +100,10 @@
         								<option>Pérdida ocurrida repetitiva</option>
         								<option>Pérdida estimada contablemente</option>
       								</select>
+    							</div>
+    							<div class="form-group">
+      								<label for="detalle">Detalle</label>
+      								<input type="text" class="form-control" id="detalle" placeholder="Detalle">
     							</div>
     							<div class="form-group">
       								<label for="area">Proceso o área a la que pertenece el riesgo</label>
@@ -243,8 +247,8 @@
     	<div class="custom-footer">
       		<p>SUGEF &copy; 2018, Todos los derechos reservados</p>
     	</div>
-    	<script src="../static/js/fontawesome-all.js" th:src="@{/js/fontawesome-all.js}"></script>
-    	<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
-    	<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    	<script src="../../static/js/fontawesome-all.js" th:src="@{/js/fontawesome-all.js}"></script>
+    	<script src="../../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    	<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
   	</body>
 </html>

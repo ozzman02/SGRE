@@ -109,6 +109,9 @@ public class Riesgo {
 	@JoinColumn(name="caracter_del_riesgo_id", unique=true)
 	private CaracterDelRiesgo caracter_del_riesgo;
 	
+	@Column(name="detalle", nullable=true)
+	private String detalle;
+	
 	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="area_id", unique=true)
 	private Area area;
@@ -353,6 +356,22 @@ public class Riesgo {
 		this.responsable = responsable;
 	}
 
+	public BigDecimal getMonto_total_recuperado() {
+		return monto_total_recuperado;
+	}
+
+	public void setMonto_total_recuperado(BigDecimal monto_total_recuperado) {
+		this.monto_total_recuperado = monto_total_recuperado;
+	}
+
+	public String getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
+	}
+
 	@Override
 	public String toString() {
 		return "Riesgo [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", frecuencia=" + frecuencia
@@ -361,14 +380,17 @@ public class Riesgo {
 				+ ", fecha_conclusion=" + fecha_conclusion + ", fecha_descubrimiento=" + fecha_descubrimiento
 				+ ", fecha_registro_contable=" + fecha_registro_contable + ", monto_bruto_perdida="
 				+ monto_bruto_perdida + ", tipo_moneda_perdida_bruta=" + tipo_moneda_perdida_bruta
-				+ ", tipo_cambio_perdida_bruta=" + tipo_cambio_perdida_bruta + ", monto_neto_perdida="
-				+ monto_neto_perdida + ", tipo_moneda_perdida_neta=" + tipo_moneda_perdida_neta
-				+ ", tipo_cambio_perdida_neta=" + tipo_cambio_perdida_neta + ", aplica_cuenta_contable="
-				+ aplica_cuenta_contable + ", notas_cuenta_contable=" + notas_cuenta_contable + ", plazo_ejecucion="
-				+ plazo_ejecucion + ", observaciones_generales=" + observaciones_generales
-				+ ", categoria_evento_perdida=" + categoria_evento_perdida + ", linea_de_negocio=" + linea_de_negocio
-				+ ", caracter_del_riesgo=" + caracter_del_riesgo + ", area=" + area + ", accion_correctiva="
-				+ accion_correctiva + ", riesgo_vinculado=" + riesgo_vinculado + ", responsable=" + responsable + "]";
+				+ ", tipo_cambio_perdida_bruta=" + tipo_cambio_perdida_bruta + ", monto_total_recuperado="
+				+ monto_total_recuperado + ", monto_neto_perdida=" + monto_neto_perdida + ", tipo_moneda_perdida_neta="
+				+ tipo_moneda_perdida_neta + ", tipo_cambio_perdida_neta=" + tipo_cambio_perdida_neta
+				+ ", aplica_cuenta_contable=" + aplica_cuenta_contable + ", notas_cuenta_contable="
+				+ notas_cuenta_contable + ", plazo_ejecucion=" + plazo_ejecucion + ", observaciones_generales="
+				+ observaciones_generales + ", categoria_evento_perdida=" + categoria_evento_perdida
+				+ ", linea_de_negocio=" + linea_de_negocio + ", caracter_del_riesgo=" + caracter_del_riesgo
+				+ ", detalle=" + detalle + ", area=" + area + ", accion_correctiva=" + accion_correctiva
+				+ ", riesgo_vinculado=" + riesgo_vinculado + ", responsable=" + responsable + "]";
 	}
+
+	
 	
 }

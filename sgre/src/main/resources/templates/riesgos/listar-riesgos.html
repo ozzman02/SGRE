@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> -->
+	<head>
+    	<meta charset="UTF-8"/>
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1"/>   
+    
+    	<!--  <link rel="icon" href="../static/myfavicon.ico" type="image/x-icon" th:href="@{/myfavicon.ico}"/>
+			<link rel="shortcut icon" href="../static/myfavicon.ico" type="image/x-icon" th:href="@{/myfavicon.ico}"/> -->   
+    
+    	<title>SGRE - Riesgos</title>
+    	<link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    	<link href="../../static/css/fa-svg-with-js.css" rel="stylesheet" th:href="@{/css/fa-svg-with-js.css}"/> 
+    	<link href="../../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>	
+  	</head>
+  	<body>
+    	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  			<a class="navbar-brand" href="#">SGRE</a>
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" 
+  				aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+  			<div class="collapse navbar-collapse" id="navbarColor01">
+    			<ul class="navbar-nav mr-auto">
+      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html">Riesgos</a></li>
+      				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html">Eventos</a></li>
+    			</ul>
+    			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
+          			<li><a class="not-active" href="#">Bienvenido Oscar Santamaria</a></li>
+            		<li><a href="#">Logout</a></li>
+          		</ul>
+  			</div>
+		</nav>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<a id="btn-crear-riesgo" href="crear-riesgo.html" type="button" class="btn btn-primary">Crear Riesgo</a>
+						<form class="form-inline my-2 my-lg-0">
+      						<input class="form-control mr-sm-2" type="text" placeholder="Buscar Riesgo">
+      						<button class="btn btn-secondary my-2 my-sm-0" type="submit">
+      							<i class="fas fa-search"></i>
+      						</button>
+    					</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 table-div">
+						<table class="table table-striped text-center">
+							<thead>
+								<tr>
+                  					<th>Id</th>
+                  					<th>Título</th>
+                  					<th>Descripción</th>
+                  					<th>Consultar</th>
+                  					<th>Modificar</th>
+                  					<th>Eliminar</th>
+                				</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Riesgo de prueba1</td>
+									<td>Descripción de prueba1</td>
+									<td><a href="consultar-riesgo.html"><i class="fas fa-file"></i></a></td>
+									<td><a href="modificar-riesgo.html"><i class="fas fa-edit"></i></a></td>
+									<td><a><i class="fas fa-trash-alt"></i></a></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Riesgo de prueba2</td>
+									<td>Descripción de prueba2</td>
+									<td><a href="consultar-riesgo.html"><i class="fas fa-file"></i></a></td>
+									<td><a href="modificar-riesgo.html"><i class="fas fa-edit"></i></a></td>
+									<td><a><i class="fas fa-trash-alt"></i></a></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Riesgo de prueba3</td>
+									<td>Descripción de prueba3</td>
+									<td><a href="consultar-riesgo.html"><i class="fas fa-file"></i></a></td>
+									<td><a href="modificar-riesgo.html"><i class="fas fa-edit"></i></a></td>
+									<td><a><i class="fas fa-trash-alt"></i></a></td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Riesgo de prueba4</td>
+									<td>Descripción de prueba4</td>
+									<td><a href="consultar-riesgo.html"><i class="fas fa-file"></i></a></td>
+									<td><a href="modificar-riesgo.html"><i class="fas fa-edit"></i></a></td>
+									<td><a><i class="fas fa-trash-alt"></i></a></td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>Riesgo de prueba5</td>
+									<td>Descripción de prueba5</td>
+									<td><a href="consultar-riesgo.html"><i class="fas fa-file"></i></a></td>
+									<td><a href="modificar-riesgo.html"><i class="fas fa-edit"></i></a></td>
+									<td><a><i class="fas fa-trash-alt"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div>
+  					<ul class="pagination">
+    					<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+    					<li class="page-item active"><a class="page-link" href="#">1</a></li>
+    					<li class="page-item"><a class="page-link" href="#">2</a></li>
+    					<li class="page-item"><a class="page-link" href="#">3</a></li>
+    					<li class="page-item"><a class="page-link" href="#">4</a></li>
+    					<li class="page-item"><a class="page-link" href="#">5</a></li>
+    					<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+  					</ul>
+				</div>
+			</div>
+		</section>
+    	<div class="custom-footer">
+      		<p>SUGEF &copy; 2018, Todos los derechos reservados</p>
+    	</div>
+    	<script src="../../static/js/fontawesome-all.js" th:src="@{/js/fontawesome-all.js}"></script>
+    	<script src="../../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    	<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+  	</body>
+</html>
