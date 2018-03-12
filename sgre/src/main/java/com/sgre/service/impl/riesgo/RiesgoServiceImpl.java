@@ -1,8 +1,7 @@
 package com.sgre.service.impl.riesgo;
 
 import java.util.List;
-
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +34,24 @@ public class RiesgoServiceImpl implements RiesgoService {
 		Riesgo riesgo = riesgoCommandToRiesgo.convert(riesgoComamand);
 		Riesgo savedRiesgo = riesgoRepository.save(riesgo);
 		return riesgoToRiesgoCommand.convert(savedRiesgo);
+	}
+
+	@Override
+	@Transactional
+	public Riesgo findById(Long id) {
+		Optional<Riesgo> riesgo = riesgoRepository.findById(id);
+		return riesgo.get();
+	}
+
+	@Override
+	@Transactional
+	public RiesgoCommand findCommandById(Long id) {
+		return riesgoToRiesgoCommand.convert(findById(id));
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		riesgoRepository.deleteById(id);
 	}
 	
 }
