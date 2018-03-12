@@ -11,8 +11,19 @@ public class ResponsableCommandToResponsable implements Converter<ResponsableCom
 
 	@Override
 	public Responsable convert(ResponsableCommand source) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (source == null) {
+			return null;
+		}
+		
+		final Responsable responsable = new Responsable();
+		
+		responsable.setId(source.getId());
+		responsable.setNombre(source.getNombre());
+		responsable.setApellido(source.getApellido());
+		responsable.setPuesto(source.getPuesto());
+		
+		return responsable;
 	}
 
 }

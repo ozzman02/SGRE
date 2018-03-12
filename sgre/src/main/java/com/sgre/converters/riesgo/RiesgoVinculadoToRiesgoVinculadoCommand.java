@@ -11,8 +11,17 @@ public class RiesgoVinculadoToRiesgoVinculadoCommand implements Converter<Riesgo
 
 	@Override
 	public RiesgoVinculadoCommand convert(RiesgoVinculado source) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (source == null) {
+			return null;
+		}
+		
+		final RiesgoVinculadoCommand riesgoVinculadoCommand = new RiesgoVinculadoCommand();
+		
+		riesgoVinculadoCommand.setId(source.getId());
+		riesgoVinculadoCommand.setDescripcion(source.getDescripcion());
+		
+		return riesgoVinculadoCommand;
 	}
 
 }

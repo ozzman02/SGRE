@@ -12,8 +12,17 @@ public class CaracterDelRiesgoCommandToCaracterDelRiesgo
 
 	@Override
 	public CaracterDelRiesgo convert(CaracterDelRiesgoCommand source) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (source == null) {
+			return null;
+		}
+		
+		final CaracterDelRiesgo caracterDelRiesgo = new CaracterDelRiesgo();
+		
+		caracterDelRiesgo.setId(source.getId());
+		caracterDelRiesgo.setDescripcion(source.getDescripcion());
+		
+		return caracterDelRiesgo;
 	}
 
 }

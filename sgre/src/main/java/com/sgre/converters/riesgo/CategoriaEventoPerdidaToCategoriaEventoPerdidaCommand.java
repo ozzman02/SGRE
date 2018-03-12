@@ -12,8 +12,17 @@ public class CategoriaEventoPerdidaToCategoriaEventoPerdidaCommand
 
 	@Override
 	public CategoriaEventoPerdidaCommand convert(CategoriaEventoPerdida source) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (source == null) {
+			return null;
+		}
+		
+		final CategoriaEventoPerdidaCommand categoriaEventoPerdidaCommand = new CategoriaEventoPerdidaCommand();
+		
+		categoriaEventoPerdidaCommand.setId(source.getId());
+		categoriaEventoPerdidaCommand.setDescripcion(source.getDescripcion());
+		
+		return categoriaEventoPerdidaCommand;
 	}
 
 }

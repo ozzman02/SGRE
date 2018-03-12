@@ -11,8 +11,18 @@ public class LineaDeNegocioCommandToLineaDeNegocio implements Converter<LineaDeN
 
 	@Override
 	public LineaDeNegocio convert(LineaDeNegocioCommand source) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (source == null) {
+			return null;
+		}
+		
+		final LineaDeNegocio lineaDeNegocio = new LineaDeNegocio();
+		
+		lineaDeNegocio.setId(source.getId());
+		lineaDeNegocio.setDescripcion(source.getDescripcion());
+		lineaDeNegocio.setTipo(source.getTipo());
+		
+		return lineaDeNegocio;
 	}
 
 }

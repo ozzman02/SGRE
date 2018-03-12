@@ -11,8 +11,17 @@ public class AreaToAreaCommand implements Converter<Area, AreaCommand> {
 
 	@Override
 	public AreaCommand convert(Area source) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (source == null) {
+			return null;
+		}
+		
+		final AreaCommand areaCommand = new AreaCommand();
+		
+		areaCommand.setId(source.getId());
+		areaCommand.setDescripcion(source.getDescripcion());
+		
+		return areaCommand;
 	}
 
 }

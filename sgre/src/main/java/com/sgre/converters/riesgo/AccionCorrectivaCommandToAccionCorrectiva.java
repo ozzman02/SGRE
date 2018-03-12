@@ -11,8 +11,17 @@ public class AccionCorrectivaCommandToAccionCorrectiva implements Converter<Acci
 
 	@Override
 	public AccionCorrectiva convert(AccionCorrectivaCommand source) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if (source == null) {
+			return null;
+		}
+		
+		final AccionCorrectiva accionCorrectiva = new AccionCorrectiva();
+		
+		accionCorrectiva.setId(source.getId());
+		accionCorrectiva.setDescripcion(source.getDescripcion());
+		
+		return accionCorrectiva;
 	}
 
 }
