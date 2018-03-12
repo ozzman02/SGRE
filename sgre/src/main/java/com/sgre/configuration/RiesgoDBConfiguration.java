@@ -21,6 +21,11 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.sgre.service.impl.riesgo.CaracterDelRiesgoServiceImpl;
+import com.sgre.service.impl.riesgo.RiesgoServiceImpl;
+import com.sgre.service.riesgo.CaracterDelRiesgoService;
+import com.sgre.service.riesgo.RiesgoService;
+
 @Configuration
 @PropertySource({ "classpath:persistence-multiple-db.properties" })
 @EnableJpaRepositories(
@@ -82,5 +87,15 @@ public class RiesgoDBConfiguration {
 		DatabasePopulatorUtils.execute(databasePopulator(), riesgoDataSource());
 		
 		return transactionManager;
+	}
+	
+	@Bean
+	public RiesgoService riesgoService() {
+		return new RiesgoServiceImpl();
+	}
+	
+	@Bean
+	public CaracterDelRiesgoService caracterDelRiesgoService() {
+		return new CaracterDelRiesgoServiceImpl();
 	}
 }

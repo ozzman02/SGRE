@@ -97,34 +97,34 @@ public class Riesgo {
 	@Column(name="observaciones_generales", nullable=true)
 	private String observaciones_generales;
 	
-	@OneToOne(cascade = {CascadeType.MERGE})
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="categoria_evento_perdida_id", unique=true)
 	private CategoriaEventoPerdida categoria_evento_perdida;
 	
-	@OneToOne(cascade = {CascadeType.MERGE})
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="linea_de_negocio_id", unique=true)
 	private LineaDeNegocio linea_de_negocio;
 	
-	@OneToOne(cascade = {CascadeType.MERGE})
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="caracter_del_riesgo_id", unique=true)
 	private CaracterDelRiesgo caracter_del_riesgo;
 	
 	@Column(name="detalle", nullable=true)
 	private String detalle;
 	
-	@OneToOne(cascade = {CascadeType.MERGE})
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="area_id", unique=true)
 	private Area area;
 	
-	@OneToOne(cascade = {CascadeType.MERGE})
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="accion_correctiva_id", unique=true)
 	private AccionCorrectiva accion_correctiva;
 	
-	@OneToOne(cascade = {CascadeType.MERGE})
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="riesgo_vinculado_id", unique=true)
 	private RiesgoVinculado riesgo_vinculado;
 	
-	@OneToOne(cascade = {CascadeType.MERGE})
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="responsable_id", unique=true)
 	private Responsable responsable;
 	

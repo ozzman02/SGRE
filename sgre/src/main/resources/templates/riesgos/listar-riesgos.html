@@ -23,7 +23,7 @@
   			</button>
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
-      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html">Riesgos</a></li>
+      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html" th:href="@{/riesgos/listar}">Riesgos</a></li>
       				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
@@ -46,7 +46,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12 table-div">
+					<div class="col-md-12 table-div" th:if="${not #lists.isEmpty(riesgos)}">
 						<table class="table table-striped text-center">
 							<thead>
 								<tr>
@@ -59,7 +59,7 @@
                 				</tr>
 							</thead>
 							<tbody>
-								<tr>
+								<tr th:remove="all">
 									<td>1</td>
 									<td>Riesgo de prueba1</td>
 									<td>Descripción de prueba1</td>
@@ -67,7 +67,7 @@
 									<td><a href="modificar-riesgo.html"><i class="fas fa-edit"></i></a></td>
 									<td><a><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
-								<tr>
+								<tr th:remove="all">
 									<td>2</td>
 									<td>Riesgo de prueba2</td>
 									<td>Descripción de prueba2</td>
@@ -75,7 +75,7 @@
 									<td><a href="modificar-riesgo.html"><i class="fas fa-edit"></i></a></td>
 									<td><a><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
-								<tr>
+								<tr th:remove="all">
 									<td>3</td>
 									<td>Riesgo de prueba3</td>
 									<td>Descripción de prueba3</td>
@@ -83,7 +83,7 @@
 									<td><a href="modificar-riesgo.html"><i class="fas fa-edit"></i></a></td>
 									<td><a><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
-								<tr>
+								<tr th:remove="all">
 									<td>4</td>
 									<td>Riesgo de prueba4</td>
 									<td>Descripción de prueba4</td>
@@ -91,7 +91,7 @@
 									<td><a href="modificar-riesgo.html"><i class="fas fa-edit"></i></a></td>
 									<td><a><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
-								<tr>
+								<tr th:remove="all">
 									<td>5</td>
 									<td>Riesgo de prueba5</td>
 									<td>Descripción de prueba5</td>
@@ -99,11 +99,34 @@
 									<td><a href="modificar-riesgo.html"><i class="fas fa-edit"></i></a></td>
 									<td><a><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
+								<tr th:each="riesgo : ${riesgos}">
+									<td th:text="${riesgo.id}">6</td>
+									<td th:text="${riesgo.titulo}">Riesgo de prueba6</td>
+									<td th:text="${riesgo.descripcion}">Descripción de prueba6</td>
+									<td>
+										<a href="consultar-riesgo.html" th:href="@{'/riesgos/' + ${riesgo.id} + '/consultar'}">
+											<i class="fas fa-file"></i>
+										</a>
+									</td>
+									<td>
+										<a href="modificar-riesgo.html" th:href="@{'/riesgos/' + ${riesgo.id} + '/modificar'}">
+											<i class="fas fa-edit"></i>
+										</a>
+									</td>
+									<td>
+										<a th:href="@{'/riesgos/' + ${riesgo.id} + '/eliminar'}">
+											<i class="fas fa-trash-alt"></i>
+										</a>
+									</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
+					<div th:if="${#lists.isEmpty(riesgos)}">
+						<h3 class="text-center">No existen riesgos registrados</h3>
+					</div>
 				</div>
-				<div>
+				<div th:if="${not #lists.isEmpty(riesgos)}">
   					<ul class="pagination">
     					<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
     					<li class="page-item active"><a class="page-link" href="#">1</a></li>
