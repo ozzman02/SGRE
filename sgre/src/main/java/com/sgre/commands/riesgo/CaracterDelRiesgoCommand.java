@@ -22,4 +22,9 @@ public class CaracterDelRiesgoCommand {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public String toString() {
+		return "CaracterDelRiesgoCommand [id=" + id + ", descripcion=" + descripcion + "]";
+	}
+
 }

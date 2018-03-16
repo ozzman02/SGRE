@@ -21,10 +21,22 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.sgre.service.impl.riesgo.AccionCorrectivaServiceImpl;
+import com.sgre.service.impl.riesgo.AreaServiceImpl;
 import com.sgre.service.impl.riesgo.CaracterDelRiesgoServiceImpl;
+import com.sgre.service.impl.riesgo.CategoriaEventoPerdidaServiceImpl;
+import com.sgre.service.impl.riesgo.LineaDeNegocioServiceImpl;
+import com.sgre.service.impl.riesgo.ResponsableServiceImpl;
 import com.sgre.service.impl.riesgo.RiesgoServiceImpl;
+import com.sgre.service.impl.riesgo.RiesgoVinculadoServiceImpl;
+import com.sgre.service.riesgo.AccionCorrectivaService;
+import com.sgre.service.riesgo.AreaService;
 import com.sgre.service.riesgo.CaracterDelRiesgoService;
+import com.sgre.service.riesgo.CategoriaEventoPerdidaService;
+import com.sgre.service.riesgo.LineaDeNegocioService;
+import com.sgre.service.riesgo.ResponsableService;
 import com.sgre.service.riesgo.RiesgoService;
+import com.sgre.service.riesgo.RiesgoVinculadoService;
 
 @Configuration
 @PropertySource({ "classpath:persistence-multiple-db.properties" })
@@ -98,4 +110,35 @@ public class RiesgoDBConfiguration {
 	public CaracterDelRiesgoService caracterDelRiesgoService() {
 		return new CaracterDelRiesgoServiceImpl();
 	}
+	
+	@Bean
+	public CategoriaEventoPerdidaService categoriaEventoPerdidaService() {
+		return new CategoriaEventoPerdidaServiceImpl();
+	}
+	
+	@Bean
+	public AccionCorrectivaService accionCorrectivaService() {
+		return new AccionCorrectivaServiceImpl();
+	}
+	
+	@Bean
+	public AreaService areaService() {
+		return new AreaServiceImpl();
+	}
+	
+	@Bean
+	public LineaDeNegocioService lineaDeNegocioService() {
+		return new LineaDeNegocioServiceImpl();
+	}
+	
+	@Bean
+	public ResponsableService responsableService() {
+		return new ResponsableServiceImpl();
+	}
+	
+	@Bean
+	public RiesgoVinculadoService riesgoVinculadoService() {
+		return new RiesgoVinculadoServiceImpl();
+	}
+	
 }

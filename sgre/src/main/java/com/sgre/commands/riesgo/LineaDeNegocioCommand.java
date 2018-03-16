@@ -32,4 +32,9 @@ public class LineaDeNegocioCommand {
 		this.tipo = tipo;
 	}
 
+	@Override
+	public String toString() {
+		return "LineaDeNegocioCommand [id=" + id + ", descripcion=" + descripcion + ", tipo=" + tipo + "]";
+	}
+
 }

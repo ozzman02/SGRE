@@ -14,9 +14,7 @@ public interface RiesgoService {
 	
 	Riesgo findById(Long id);
 	
-	RiesgoCommand findCommandById(Long id);
-	
-	RiesgoCommand guardarRiesgoCommand(RiesgoCommand riesgoComamand);
+	void guardarRiesgoCommand(Riesgo riesgo);
 	
 	void deleteById(Long id);
 	

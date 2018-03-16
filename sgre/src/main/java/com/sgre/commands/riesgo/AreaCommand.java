@@ -21,5 +21,10 @@ public class AreaCommand {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	@Override
+	public String toString() {
+		return "AreaCommand [id=" + id + ", descripcion=" + descripcion + "]";
+	}
 	
 }

@@ -23,7 +23,7 @@
   			</button>
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
-      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html">Riesgos</a></li>
+      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html" th:href="@{/riesgos/listar}">Riesgos</a></li>
       				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
@@ -36,206 +36,277 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<form id="riesgo-form">
+						<form id="riesgo-form" th:object="${riesgo}" th:action="@{/guardar/}" method="post">
   							<fieldset>
+  								 <input type="hidden" th:value="${riesgo.id}" name="id"/>
   								 <legend>Modificar Riesgo</legend>	
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('titulo')} ? 'form-group has-error' : 'form-group'">
       								<label for="titulo">Título</label>
-      								<input type="text" class="form-control" id="titulo" aria-describedby="" placeholder="Título">
+      								<input type="text" th:field="*{titulo}" th:errorclass="has-error" class="form-control" id="titulo" 
+      									aria-describedby="" placeholder="Título" th:value="${riesgo.titulo}" />
+      								<span class="help-block" th:if="${#fields.hasErrors('titulo')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('titulo')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('descripcion')} ? 'form-group has-error' : 'form-group'">
       								<label for="descripcion">Descripción</label>
-      								<input type="text" class="form-control" id="descripcion" placeholder="Descripción">
+      								<input type="text" th:field="*{descripcion}" th:errorclass="has-error" class="form-control" id="descripcion" 
+      									placeholder="Descripción" th:value="${riesgo.descripcion}" />
+      								<span class="help-block" th:if="${#fields.hasErrors('descripcion')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('descripcion')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('categoria_evento_perdida')} ? 'form-group has-error' : 'form-group'">
       								<label for="categoriaEventoPerdida">Categoria de evento de pérdida</label>
-      								<select class="form-control" id="categoriaEventoPerdida">
-        								<option></option>
-        								<option>Fraude interno</option>
-        								<option>Fraude externo</option>
-        								<option>Relaciones laborales y seguridad en el puesto de trabajo</option>
-        								<option>Clientes, productos y prácticas empresariales</option>
-        								<option>Daños a activos materiales</option>
-        								<option>Interrupción del negocio y fallos en los sistemas</option>
-        								<option>Ejecución entrega y gestión de procesos</option>
+      								<select class="form-control" id="categoriaEventoPerdida" th:field="*{categoria_evento_perdida}" th:errorclass="has-error">
+        								<option th:text="${riesgo.categoria_evento_perdida.descripcion}" 
+        									th:value="${riesgo.categoria_evento_perdida.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.descripcion}"></option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('categoria_evento_perdida')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('categoria_evento_perdida')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('linea_de_negocio')} ? 'form-group has-error' : 'form-group'">
       								<label for="lineaDeNegocio">Liínea de negocio</label>
-      								<select class="form-control" id="lineaDeNegocio">
-        								<option></option>
-        								<option>Finanzas corporativas</option>
-        								<option>Finanzas de administraciones locales y públicas</option>
-        								<option>Banca de inversión</option>
-        								<option>Servicios de asesoramiento</option>
-        								<option>Tesorería por cuentas de terceros</option>
-        								<option>Tesorería posiciones propias</option>
-        								<option>Tesorería Tradicional</option>
-        								<option>Banca de Personas</option>
-        								<option>Banca Privada</option>
-        								<option>Banca de desarrollo minorista</option>
-        								<option>Banca corporativa</option>
-        								<option>Banca empresarial</option>
-        								<option>Banca de Desarrollo Comercial</option>
-        								<option>Banca de Segundo Piso</option>
-        								<option>Tarjetas de crédito y débito</option>
-        								<option>Administración y Adhesión de comercios</option>
-        								<option>Cobros, pagos y liquidación</option>
-        								<option>Administración de Fondos de Cesantía</option>
-        								<option>Administración de peaje bancario y otros</option>
-        								<option>Administración de fideicomisos</option>
-        								<option>Administración de Fondos de Pensión</option>
-        								<option>Custodia</option>
-        								<option>Comercialización de Seguros autoexpedibles</option>
-        								<option>Tecnología de la información y comunicación</option>
-        								<option>Cambios y transformaciones organizacionales</option>
-        								<option>Otros procesos Transversales a la Organización</option>
+      								<select class="form-control" id="lineaDeNegocio" th:field="*{linea_de_negocio}" th:errorclass="has-error">
+        								<option th:text="${riesgo.linea_de_negocio.descripcion}" 
+        									th:value="${riesgo.linea_de_negocio.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="l : ${lineas}" th:value="${l.id}" th:text="${l.descripcion}"></option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('linea_de_negocio')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('linea_de_negocio')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('caracter_del_riesgo')} ? 'form-group has-error' : 'form-group'">
       								<label for="caracterDelRiesgo">Caracter del riesgo</label>
-      								<select class="form-control" id="caracterDelRiesgo">
-        								<option></option>
-        								<option>Pérdida ocurrida individual</option>
-        								<option>Pérdida ocurrida repetitiva</option>
-        								<option>Pérdida estimada contablemente</option>
+      								<select class="form-control" id="caracterDelRiesgo" th:field="*{caracter_del_riesgo}" th:errorclass="has-error">
+        								<option th:text="${riesgo.caracter_del_riesgo.descripcion}" 
+        									th:value="${riesgo.caracter_del_riesgo.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="c : ${caracteres}" th:value="${c.id}" th:text="${c.descripcion}"></option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('caracter_del_riesgo')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('caracter_del_riesgo')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
     							<div class="form-group">
       								<label for="detalle">Detalle</label>
-      								<input type="text" class="form-control" id="detalle" placeholder="Detalle">
+      								<input type="text" class="form-control" id="detalle" placeholder="Detalle" th:field="*{detalle}" 
+      									th:value="${riesgo.detalle}" />
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('area')} ? 'form-group has-error' : 'form-group'">
       								<label for="area">Proceso o área a la que pertenece el riesgo</label>
-      								<select class="form-control" id="area">
-        								<option></option>
-        								<option>Área de negocio</option>
-        								<option>Proceso</option>
-        								<option>Subproceso</option>
-        								<option>Producto</option>
+      								<select class="form-control" id="area" th:field="*{area}" th:errorclass="has-error">
+        								<option th:text="${riesgo.area.descripcion}" 
+        									th:value="${riesgo.area.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="a : ${areas}" th:value="${a.id}" th:text="${a.descripcion}"></option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('area')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('area')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('frecuencia')} ? 'form-group has-error' : 'form-group'">
       								<label for="frecuencia">Frecuencia</label>
-      								<input type="text" class="form-control" id="frecuencia" placeholder="Frecuencia">
+      								<input type="text" th:field="*{frecuencia}" th:errorclass="has-error" class="form-control" 
+      									id="frecuencia" placeholder="Frecuencia" th:value="${riesgo.frecuencia}">
+      								<span class="help-block" th:if="${#fields.hasErrors('frecuencia')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('frecuencia')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group"  th:class="${#fields.hasErrors('probabilidad')} ? 'form-group has-error' : 'form-group'">
       								<label for="probabilidad">Probabilidad</label>
-      								<input type="text" class="form-control" id="probabilidad" placeholder="Probabilidad">
+      								<input type="text" th:field="*{probabilidad}" th:errorclass="has-error" class="form-control" 
+      									id="probabilidad" placeholder="Probabilidad" th:value="${riesgo.probabilidad}">
+      								<span class="help-block" th:if="${#fields.hasErrors('probabilidad')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('probabilidad')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
     							<div class="form-group">
       								<label for="controlesDeRiesgo">Controles de riesgo</label>
-      								<input type="text" class="form-control" id="controlesDeRiesgo" placeholder="Controles de riesgo">
+      								<input type="text" class="form-control" id="controlesDeRiesgo" placeholder="Controles de riesgo" 
+      									th:field="*{controles_de_riesgo}" th:value="${riesgo.controles_de_riesgo}" />
     							</div>
-    							<div class="form-group">
+    							
+    							<div class="form-group" th:class="${#fields.hasErrors('impacto_del_riesgo')} ? 'form-group has-error' : 'form-group'">
       								<label for="impactoDelRiesgoSelect">Impacto del riesgo</label>
-      								<select class="form-control" id="impactoDelRiesgoSelect">
-      									<option></option>
-        								<option>Bajo</option>
-        								<option>Medio</option>
-        								<option>Alto</option>
-        								<option>Crítico</option>
+      								<select class="form-control" id="impactoDelRiesgoSelect" th:field="*{impacto_del_riesgo}" th:errorclass="has-error">
+      									<option th:text="${riesgo.impacto_del_riesgo}" 
+        									th:value="${riesgo.impacto_del_riesgo}">
+        								</option>
+        								<option value=""></option>
+        								<option value="BAJO">BAJO</option>
+        								<option value="MEDIO">MEDIO</option>
+        								<option value="ALTO">ALTO</option>
+        								<option value="CRITICO">CRITICO</option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('impacto_del_riesgo')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('impacto_del_riesgo')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('fecha_inicio')} ? 'form-group has-error' : 'form-group'">
       								<label for="fechaInicio">Fecha de inicio</label>
-      								<input type="date" class="form-control" id="fechaInicio">
+      								<input type="date" class="form-control" id="fechaInicio" th:field="*{fecha_inicio}" th:errorclass="has-error"
+      									th:value="${riesgo.fecha_inicio}" />
+      								<span class="help-block" th:if="${#fields.hasErrors('fecha_inicio')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('fecha_inicio')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
     							<div class="form-group">
       								<label for="fechaConclusion">Fecha de conclusión</label>
-      								<input type="date" class="form-control" id="fechaConclusion">
+      								<input type="date" class="form-control" id="fechaConclusion" th:field="*{fecha_conclusion}" 
+      									th:value="${riesgo.fecha_conclusion}" />
     							</div>
     							<div class="form-group">
       								<label for="fechaDescubrimiento">Fecha de descubrimiento</label>
-      								<input type="date" class="form-control" id="fechaDescubrimiento">
+      								<input type="date" class="form-control" id="fechaDescubrimiento" th:field="*{fecha_descubrimiento}" 
+      									th:value="${riesgo.fecha_descubrimiento}" />
     							</div>
     							<div class="form-group">
       								<label for="fechaRegistroContable">Fecha de registro contable</label>
-      								<input type="date" class="form-control" id="fechaRegistroContable">
+      								<input type="date" class="form-control" id="fechaRegistroContable" th:field="*{fecha_registro_contable}" 
+      									th:value="${riesgo.fecha_registro_contable}" />
     							</div>
     							<div class="form-group">
       								<label for="montoBrutoPerdida">Monto bruto de la pérdida</label>
-      								<input type="text" class="form-control" id="montoBrutoPerdida" placeholder="Monto bruto de la pérdida">
+      								<input type="text" class="form-control" id="montoBrutoPerdida" placeholder="Monto bruto de la pérdida"
+      									th:field="*{monto_bruto_perdida}" th:value="${riesgo.monto_bruto_perdida}" />
     							</div>
     							<div class="form-group">
       								<label for="monedaPerdidaBruta">Tipo de moneda de la pérdida bruta</label>
-      								<select class="form-control" id="monedaPerdidaBruta">
-        								<option></option>
-        								<option>₡ (colones)</option>
-        								<option>$ (dólares)</option>
+      								<select class="form-control" id="monedaPerdidaBruta" th:field="*{tipo_moneda_perdida_bruta}">
+        								<option th:text="${riesgo.tipo_moneda_perdida_bruta}" 
+        									th:value="${riesgo.tipo_moneda_perdida_bruta}">
+        								</option>
+        								<option value=""></option>
+        								<option value="₡ (colones)">₡ (colones)</option>
+        								<option value="$ (dólares)">$ (dólares)</option>
       								</select>
     							</div>
     							<div class="form-group">
       								<label for="tipoCambioPerdidaBruta">Tipo de cambio de la pérdida bruta</label>
-      								<input type="text" class="form-control" id="tipoCambioPerdidaBruta" placeholder="Tipo de cambio de la pérdida bruta">
+      								<input type="text" class="form-control" id="tipoCambioPerdidaBruta" placeholder="Tipo de cambio de la pérdida bruta"
+      									th:field="*{tipo_cambio_perdida_bruta}" th:value="${riesgo.tipo_cambio_perdida_bruta}" />
     							</div>
     							<div class="form-group">
       								<label for="montoTotalRecuperado">Monto total recuperado</label>
-      								<input type="text" class="form-control" id="montoTotalRecuperado" placeholder="Monto total recuperado">
+      								<input type="text" class="form-control" id="montoTotalRecuperado" placeholder="Monto total recuperado"
+      									th:field="*{monto_total_recuperado}" th:value="${riesgo.monto_total_recuperado}" />	
     							</div>
     							<div class="form-group">
       								<label for="montoNetoPerdida">Monto neto de la pérdida</label>
-      								<input type="text" class="form-control" id="montoNetoPerdida" placeholder="Monto neto de la pérdida">
+      								<input type="text" class="form-control" id="montoNetoPerdida" placeholder="Monto neto de la pérdida"
+      									th:field="*{monto_neto_perdida}" th:value="${riesgo.monto_neto_perdida}" />
     							</div>
     							<div class="form-group">
       								<label for="monedaPerdidaNeta">Tipo de moneda de la pérdida neta</label>
-      								<select class="form-control" id="monedaPerdidaNeta">
-        								<option></option>
-        								<option>₡ (colones)</option>
-        								<option>$ (dólares)</option>
+      								<select class="form-control" id="monedaPerdidaNeta" th:field="*{tipo_moneda_perdida_neta}">
+      									<option th:text="${riesgo.tipo_moneda_perdida_neta}" 
+											th:value="${riesgo.tipo_moneda_perdida_neta}">
+        								</option>
+        								<option value=""></option>
+        								<option value="₡ (colones)">₡ (colones)</option>
+        								<option value="$ (dólares)">$ (dólares)</option>
       								</select>
     							</div>
     							<div class="form-group">
       								<label for="tipoCambioPerdidaNeta">Tipo de cambio de la pérdida neta</label>
-      								<input type="text" class="form-control" id="tipoCambioPerdidaNeta" placeholder="Tipo de cambio de la pérdida neta">
+      								<input type="text" class="form-control" id="tipoCambioPerdidaNeta" placeholder="Tipo de cambio de la pérdida neta"
+      									th:field="*{tipo_cambio_perdida_neta}" th:value="${riesgo.tipo_cambio_perdida_neta}" />
     							</div>
     							<div class="form-group">
       								<label for="aplicaCuentaContable">Aplica cuenta contable</label>
-      								<select class="form-control" id="aplicaCuentaContable">
-        								<option></option>
-        								<option>Sí</option>
-        								<option>No</option>
+      								<select class="form-control" id="aplicaCuentaContable" th:field="*{aplica_cuenta_contable}">
+      									<option th:text="${riesgo.aplica_cuenta_contable}" 
+        									th:value="${riesgo.aplica_cuenta_contable}">
+        								</option>
+        								<option value=""></option>
+        								<option value="SI">SI</option>
+        								<option value="NO">NO</option>
       								</select>
     							</div>
     							<div class="form-group">
       								<label for="notasCuentaContable">Notas de la cuenta contable</label>
-      								<input type="text" class="form-control" id="notasCuentaContable" placeholder="Notas de la cuenta contable">
+      								<input type="text" class="form-control" id="notasCuentaContable" placeholder="Notas de la cuenta contable"
+      									th:field="*{notas_cuenta_contable}" th:value="${riesgo.notas_cuenta_contable}" />
     							</div>
     							<div class="form-group">
       								<label for="accionCorrectiva">Acción Correctiva</label>
-      								<select class="form-control" id="accionCorrectiva">
-        								<option></option>
-        								<option>Plan de acción</option>
-        								<option>Plan de contingencia</option>
+      								<select class="form-control" id="accionCorrectiva" th:field="*{accion_correctiva}">
+        								<option th:text="${riesgo.accion_correctiva.descripcion}" 
+        									th:value="${riesgo.accion_correctiva.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="a : ${acciones}" th:value="${a.id}" th:text="${a.descripcion}"></option>
       								</select>
     							</div>
     							<div class="form-group">
       								<label for="riesgoVinculado">Riesgo vinculado</label>
-      								<select class="form-control" id="riesgoVinculado">
-        								<option></option>
-        								<option>Crédito</option>
-        								<option>Mercado</option>
-        								<option>Crédito y Mercado</option>
-        								<option>Otros</option>
+      								<select class="form-control" id="riesgoVinculado" th:field="*{riesgo_vinculado}">
+        								<option th:text="${riesgo.riesgo_vinculado.descripcion}" 
+        									th:value="${riesgo.riesgo_vinculado.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="r : ${riesgosVinculados}" th:value="${r.id}" th:text="${r.descripcion}"></option>
       								</select>
     							</div>
-								<div class="form-group">
+								<div class="form-group" th:class="${#fields.hasErrors('plazo_ejecucion')} ? 'form-group has-error' : 'form-group'">
       								<label for="plazoEjecucion">Plazo de ejecución</label>
-      								<input type="text" class="form-control" id="plazoEjecucion" placeholder="Plazo de ejecución">
+      								<input type="text" class="form-control" id="plazo_ejecucion" placeholder="Plazo de ejecución" 
+      									th:field="*{plazo_ejecucion}" th:errorclass="has-error" th:value="${riesgo.plazo_ejecucion}" />
+      								<span class="help-block" th:if="${#fields.hasErrors('plazo_ejecucion')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('plazo_ejecucion')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>    							
-    							<div class="form-group">
+    							<div class="form-group"  th:class="${#fields.hasErrors('responsable')} ? 'form-group has-error' : 'form-group'">
       								<label for="responsable">Responsable</label>
-      								<select class="form-control" id="responsable">
-        								<option></option>
-        								<option>Responsable1</option>
-        								<option>Responsable2</option>
-        								<option>Responsable3</option>
-        								<option>Responsable4</option>
+      								<select class="form-control" id="responsable" th:field="*{responsable}" th:errorclass="has-error">
+        								<option th:text="${riesgo.responsable.nombre} + ' ' + ${riesgo.responsable.apellido}" 
+        									th:value="${riesgo.responsable.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="r : ${responsables}" th:value="${r.id}" 
+        									th:text="${r.nombre} + ' ' + ${r.apellido}"></option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('responsable')}">
+              							<ul>
+											<li th:each="err : ${#fields.errors('responsable')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
     							<div class="form-group">
       								<label for="observaciones">Observaciones</label>
-      								<textarea class="form-control" id="observaciones" rows="3"></textarea>
+      								<textarea class="form-control" id="observaciones" rows="3" th:field="*{observaciones_generales}" 
+      									th:value="${riesgo.observaciones_generales}"></textarea>
     							</div>
     							<button type="submit" class="btn btn-primary">Guardar</button>
   							</fieldset>
