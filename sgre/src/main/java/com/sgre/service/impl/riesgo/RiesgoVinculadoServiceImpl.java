@@ -1,6 +1,7 @@
 package com.sgre.service.impl.riesgo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,12 @@ public class RiesgoVinculadoServiceImpl implements RiesgoVinculadoService {
 	public List<RiesgoVinculado> listarRiesgosVinculados() {
 		Iterable<RiesgoVinculado> lista = repository.findAll();
 		return (List<RiesgoVinculado>) lista;
+	}
+
+	@Override
+	public RiesgoVinculado buscarRiesgoVinculadoPorId(Long id) {
+		Optional<RiesgoVinculado> riesgoVinculado = repository.findById(id);
+		return riesgoVinculado.get();
 	}
 
 }

@@ -11,4 +11,5 @@ public interface RiesgoVinculadoService {
 
 	List<RiesgoVinculado> listarRiesgosVinculados();
 	
+	RiesgoVinculado buscarRiesgoVinculadoPorId(Long id);
 }

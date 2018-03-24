@@ -1,6 +1,7 @@
 package com.sgre.service.impl.riesgo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,12 @@ public class CategoriaEventoPerdidaServiceImpl implements CategoriaEventoPerdida
 	public List<CategoriaEventoPerdida> listarCategorias() {
 		Iterable<CategoriaEventoPerdida> categorias = repository.findAll();
 		return (List<CategoriaEventoPerdida>) categorias;
+	}
+
+	@Override
+	public CategoriaEventoPerdida buscarCatergoriaPorId(Long id) {
+		Optional<CategoriaEventoPerdida> categoria = repository.findById(id);
+		return categoria.get();
 	}
 
 }

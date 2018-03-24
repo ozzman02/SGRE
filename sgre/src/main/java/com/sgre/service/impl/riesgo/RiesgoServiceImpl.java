@@ -23,19 +23,19 @@ public class RiesgoServiceImpl implements RiesgoService {
 
 	@Override
 	@Transactional
-	public void guardarRiesgoCommand(Riesgo riesgo) {
+	public void guardarRiesgo(Riesgo riesgo) {
 		riesgoRepository.save(riesgo);
 	}
 
 	@Override
 	@Transactional
-	public Riesgo findById(Long id) {
+	public Riesgo buscarRiesgoPorId(Long id) {
 		Optional<Riesgo> riesgo = riesgoRepository.findById(id);
 		return riesgo.get();
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void borrarRiesgoPorId(Long id) {
 		riesgoRepository.deleteById(id);
 	}
 	

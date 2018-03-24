@@ -11,4 +11,6 @@ public interface CaracterDelRiesgoService {
 
 	List<CaracterDelRiesgo> listar();
 	
+	CaracterDelRiesgo buscarCaracterPorId(Long id);
+	
 }

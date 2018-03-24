@@ -11,4 +11,6 @@ public interface ResponsableService {
 
 	List<Responsable> listarResponsables();
 	
+	Responsable buscarResponsablePorId(Long id);
+	
 }

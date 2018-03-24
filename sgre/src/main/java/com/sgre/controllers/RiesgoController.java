@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sgre.commands.riesgo.RiesgoCommand;
+import com.sgre.converters.RiesgoConverter;
 import com.sgre.model.riesgo.Riesgo;
 import com.sgre.service.riesgo.AccionCorrectivaService;
 import com.sgre.service.riesgo.AreaService;
@@ -46,6 +47,9 @@ public class RiesgoController {
 	@Autowired
 	private RiesgoVinculadoService riesgoVinculadoService;
 	
+	@Autowired
+	private RiesgoConverter converter;
+	
 	@GetMapping("riesgos/listar")
 	public String listarRiesgos(Model model) {
 		model.addAttribute("riesgos", riesgoService.listarRiesgos());
@@ -54,7 +58,7 @@ public class RiesgoController {
 	
 	@GetMapping("riesgos/{id}/consultar")
 	public String consultarRiesgo(@PathVariable String id, Model model) {
-		model.addAttribute("riesgo", riesgoService.findById(new Long(id)));
+		model.addAttribute("riesgo", riesgoService.buscarRiesgoPorId(new Long(id)));
 		return "riesgos/consultar-riesgo";
 	}
 	
@@ -68,15 +72,15 @@ public class RiesgoController {
 		model.addAttribute("acciones", accionCorrectivaService.listarAcciones());
 		model.addAttribute("categorias", categoriaEventoPerdidaService.listarCategorias());
 		model.addAttribute("caracteres", caracterDelRiesgoService.listar());
-		model.addAttribute("riesgo", riesgoService.findById(Long.valueOf(id)));
+		model.addAttribute("riesgo", riesgoService.buscarRiesgoPorId(Long.valueOf(id)));
 		
 		return "riesgos/modificar-riesgo";
 	}
 	
 	@PostMapping("guardar")
 	public String guardarRiesgo(@ModelAttribute RiesgoCommand command) {
-		System.out.println(command);
-		//riesgoService.guardarRiesgoCommand(command);
+		Riesgo riesgo = converter.convert(command);
+		riesgoService.guardarRiesgo(riesgo);
 		return "redirect:/riesgos/listar";
 	}
 	

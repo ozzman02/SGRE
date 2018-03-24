@@ -11,4 +11,6 @@ public interface AreaService {
 
 	List<Area> listarAreas();
 	
+	Area buscarAreaPorId(Long id);
+	
 }

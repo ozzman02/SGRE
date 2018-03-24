@@ -11,4 +11,5 @@ public interface LineaDeNegocioService {
 	
 	List<LineaDeNegocio> listarLineas();
 
+	LineaDeNegocio buscarLineaDeNegocioPorId(Long id);
 }

@@ -12,10 +12,10 @@ public interface RiesgoService {
 	
 	List<Riesgo> listarRiesgos();
 	
-	Riesgo findById(Long id);
+	Riesgo buscarRiesgoPorId(Long id);
 	
-	void guardarRiesgoCommand(Riesgo riesgo);
+	void guardarRiesgo(Riesgo riesgo);
 	
-	void deleteById(Long id);
+	void borrarRiesgoPorId(Long id);
 	
 }

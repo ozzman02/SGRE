@@ -10,4 +10,7 @@ import com.sgre.model.riesgo.CategoriaEventoPerdida;
 public interface CategoriaEventoPerdidaService {
 	
 	List<CategoriaEventoPerdida> listarCategorias();
+	
+	CategoriaEventoPerdida buscarCatergoriaPorId(Long id);
+	
 }

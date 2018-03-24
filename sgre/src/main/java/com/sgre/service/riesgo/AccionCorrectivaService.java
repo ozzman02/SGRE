@@ -11,4 +11,6 @@ public interface AccionCorrectivaService {
 	
 	List<AccionCorrectiva> listarAcciones();
 	
+	AccionCorrectiva buscarAccionCorrectivaPorId(Long id);
+	
 }
