@@ -57,6 +57,7 @@ public class RiesgoCommandToRiesgoConverter implements Converter<RiesgoCommand, 
 	@Override
 	public Riesgo convert(RiesgoCommand source) {
 		
+	
 		if (source == null) {
 			return null;
 		}
@@ -127,8 +128,8 @@ public class RiesgoCommandToRiesgoConverter implements Converter<RiesgoCommand, 
 		if (!source.getTipo_cambio_perdida_bruta().isEmpty()) {
 			riesgo.setTipo_cambio_perdida_bruta(new BigDecimal(source.getTipo_cambio_perdida_bruta()));
 		}
-		
-		if (source.getTipo_cambio_perdida_neta() != null) {
+			
+		if (!source.getTipo_cambio_perdida_neta().isEmpty()) {
 			riesgo.setTipo_cambio_perdida_neta(new BigDecimal(source.getTipo_cambio_perdida_neta()));
 		}
 		

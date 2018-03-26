@@ -149,5 +149,10 @@ public class RiesgoController {
 		return "redirect:/riesgos/listar";
 		
 	}
-	
+
+	@GetMapping("riesgos/{id}/eliminar")
+	public String borrarRiesgo(@PathVariable String id) {
+		riesgoService.borrarRiesgoPorId(Long.valueOf(id));
+		return "redirect:/riesgos/listar";
+	}
 }

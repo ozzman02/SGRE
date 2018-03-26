@@ -96,34 +96,34 @@ public class Riesgo {
 	@Column(name="observaciones_generales", nullable=true)
 	private String observaciones_generales;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="categoria_evento_perdida_id")
 	private CategoriaEventoPerdida categoria_evento_perdida;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="linea_de_negocio_id")
 	private LineaDeNegocio linea_de_negocio;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="caracter_del_riesgo_id")
 	private CaracterDelRiesgo caracter_del_riesgo;
 	
 	@Column(name="detalle", nullable=true)
 	private String detalle;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="area_id")
 	private Area area;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="accion_correctiva_id")
 	private AccionCorrectiva accion_correctiva;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="riesgo_vinculado_id")
 	private RiesgoVinculado riesgo_vinculado;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="responsable_id")
 	private Responsable responsable;
 	
