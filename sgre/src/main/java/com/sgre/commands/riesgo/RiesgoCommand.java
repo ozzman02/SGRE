@@ -1,5 +1,8 @@
 package com.sgre.commands.riesgo;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import com.sgre.model.riesgo.AplicaCuentaContable;
 import com.sgre.model.riesgo.ImpactoDelRiesgo;
 
@@ -7,18 +10,24 @@ public class RiesgoCommand {
 
 	private String id;
 	
+	@NotEmpty
 	private String titulo;
 	
+	@NotEmpty
 	private String descripcion;
 	
+	@NotEmpty
 	private String frecuencia;
 	
+	@NotEmpty
 	private String probabilidad;
 	
 	private String controles_de_riesgo;
 	
+	@NotNull
 	private ImpactoDelRiesgo impacto_del_riesgo;
 	
+	@NotEmpty
 	private String fecha_inicio;
 	
 	private String fecha_conclusion;
@@ -41,29 +50,52 @@ public class RiesgoCommand {
 	
 	private String tipo_cambio_perdida_neta;
 	
+	@NotNull
 	private AplicaCuentaContable aplica_cuenta_contable;
 	
 	private String notas_cuenta_contable;
 	
+	@NotEmpty
 	private String plazo_ejecucion;
 	
 	private String observaciones_generales;
 	
+	@NotEmpty
 	private String categoria_evento_perdida;
 	
+	private CategoriaEventoPerdidaCommand categoria_evento_perdida_command;
+	
+	@NotEmpty
 	private String linea_de_negocio;
 	
+	private LineaDeNegocioCommand linea_de_negocio_command; 
+	
+	@NotEmpty
 	private String caracter_del_riesgo;
+	
+	private CaracterDelRiesgoCommand caracter_del_riesgo_command;
 	
 	private String detalle;
 	
+	@NotEmpty
 	private String area;
 	
+	private AreaCommand area_command;
+	
+	@NotEmpty
 	private String accion_correctiva;
 	
+	private AccionCorrectivaCommand accion_correctiva_command;
+	
+	@NotEmpty
 	private String riesgo_vinculado;
 	
+	private RiesgoVinculadoCommand riesgo_vinculado_command;
+	
+	@NotEmpty
 	private String responsable;
+
+	private ResponsableCommand responsable_command;
 
 	public String getId() {
 		return id;
@@ -249,6 +281,14 @@ public class RiesgoCommand {
 		this.categoria_evento_perdida = categoria_evento_perdida;
 	}
 
+	public CategoriaEventoPerdidaCommand getCategoria_evento_perdida_command() {
+		return categoria_evento_perdida_command;
+	}
+
+	public void setCategoria_evento_perdida_command(CategoriaEventoPerdidaCommand categoria_evento_perdida_command) {
+		this.categoria_evento_perdida_command = categoria_evento_perdida_command;
+	}
+
 	public String getLinea_de_negocio() {
 		return linea_de_negocio;
 	}
@@ -257,12 +297,28 @@ public class RiesgoCommand {
 		this.linea_de_negocio = linea_de_negocio;
 	}
 
+	public LineaDeNegocioCommand getLinea_de_negocio_command() {
+		return linea_de_negocio_command;
+	}
+
+	public void setLinea_de_negocio_command(LineaDeNegocioCommand linea_de_negocio_command) {
+		this.linea_de_negocio_command = linea_de_negocio_command;
+	}
+
 	public String getCaracter_del_riesgo() {
 		return caracter_del_riesgo;
 	}
 
 	public void setCaracter_del_riesgo(String caracter_del_riesgo) {
 		this.caracter_del_riesgo = caracter_del_riesgo;
+	}
+
+	public CaracterDelRiesgoCommand getCaracter_del_riesgo_command() {
+		return caracter_del_riesgo_command;
+	}
+
+	public void setCaracter_del_riesgo_command(CaracterDelRiesgoCommand caracter_del_riesgo_command) {
+		this.caracter_del_riesgo_command = caracter_del_riesgo_command;
 	}
 
 	public String getDetalle() {
@@ -281,12 +337,28 @@ public class RiesgoCommand {
 		this.area = area;
 	}
 
+	public AreaCommand getArea_command() {
+		return area_command;
+	}
+
+	public void setArea_command(AreaCommand area_command) {
+		this.area_command = area_command;
+	}
+
 	public String getAccion_correctiva() {
 		return accion_correctiva;
 	}
 
 	public void setAccion_correctiva(String accion_correctiva) {
 		this.accion_correctiva = accion_correctiva;
+	}
+
+	public AccionCorrectivaCommand getAccion_correctiva_command() {
+		return accion_correctiva_command;
+	}
+
+	public void setAccion_correctiva_command(AccionCorrectivaCommand accion_correctiva_command) {
+		this.accion_correctiva_command = accion_correctiva_command;
 	}
 
 	public String getRiesgo_vinculado() {
@@ -297,12 +369,28 @@ public class RiesgoCommand {
 		this.riesgo_vinculado = riesgo_vinculado;
 	}
 
+	public RiesgoVinculadoCommand getRiesgo_vinculado_command() {
+		return riesgo_vinculado_command;
+	}
+
+	public void setRiesgo_vinculado_command(RiesgoVinculadoCommand riesgo_vinculado_command) {
+		this.riesgo_vinculado_command = riesgo_vinculado_command;
+	}
+
 	public String getResponsable() {
 		return responsable;
 	}
 
 	public void setResponsable(String responsable) {
 		this.responsable = responsable;
+	}
+
+	public ResponsableCommand getResponsable_command() {
+		return responsable_command;
+	}
+
+	public void setResponsable_command(ResponsableCommand responsable_command) {
+		this.responsable_command = responsable_command;
 	}
 
 	@Override
@@ -319,10 +407,13 @@ public class RiesgoCommand {
 				+ ", aplica_cuenta_contable=" + aplica_cuenta_contable + ", notas_cuenta_contable="
 				+ notas_cuenta_contable + ", plazo_ejecucion=" + plazo_ejecucion + ", observaciones_generales="
 				+ observaciones_generales + ", categoria_evento_perdida=" + categoria_evento_perdida
-				+ ", linea_de_negocio=" + linea_de_negocio + ", caracter_del_riesgo=" + caracter_del_riesgo
-				+ ", detalle=" + detalle + ", area=" + area + ", accion_correctiva=" + accion_correctiva
-				+ ", riesgo_vinculado=" + riesgo_vinculado + ", responsable=" + responsable + "]";
+				+ ", categoria_evento_perdida_command=" + categoria_evento_perdida_command + ", linea_de_negocio="
+				+ linea_de_negocio + ", linea_de_negocio_command=" + linea_de_negocio_command + ", caracter_del_riesgo="
+				+ caracter_del_riesgo + ", caracter_del_riesgo_command=" + caracter_del_riesgo_command + ", detalle="
+				+ detalle + ", area=" + area + ", area_command=" + area_command + ", accion_correctiva="
+				+ accion_correctiva + ", accion_correctiva_command=" + accion_correctiva_command + ", riesgo_vinculado="
+				+ riesgo_vinculado + ", riesgo_vinculado_command=" + riesgo_vinculado_command + ", responsable="
+				+ responsable + ", responsable_command=" + responsable_command + "]";
 	}
 
-		
 }

@@ -2,7 +2,7 @@ package com.sgre.commands.riesgo;
 
 public class ResponsableCommand {
 	
-	private Long id;
+	private String id;
 	
 	private String nombre;
 	
@@ -10,11 +10,11 @@ public class ResponsableCommand {
 	
 	private String puesto;
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

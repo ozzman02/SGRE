@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -24,8 +23,8 @@ import org.hibernate.annotations.Type;
 public class Riesgo {
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id", unique=true, nullable=false)
+	@GeneratedValue
+	@Column(name="id", unique = true, nullable=false)
 	private Long id;
 	
 	@Column(name="titulo", nullable=false)
@@ -98,34 +97,34 @@ public class Riesgo {
 	private String observaciones_generales;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="categoria_evento_perdida_id", unique=true)
+	@JoinColumn(name="categoria_evento_perdida_id")
 	private CategoriaEventoPerdida categoria_evento_perdida;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="linea_de_negocio_id", unique=true)
+	@JoinColumn(name="linea_de_negocio_id")
 	private LineaDeNegocio linea_de_negocio;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="caracter_del_riesgo_id", unique=true)
+	@JoinColumn(name="caracter_del_riesgo_id")
 	private CaracterDelRiesgo caracter_del_riesgo;
 	
 	@Column(name="detalle", nullable=true)
 	private String detalle;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="area_id", unique=true)
+	@JoinColumn(name="area_id")
 	private Area area;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="accion_correctiva_id", unique=true)
+	@JoinColumn(name="accion_correctiva_id")
 	private AccionCorrectiva accion_correctiva;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="riesgo_vinculado_id", unique=true)
+	@JoinColumn(name="riesgo_vinculado_id")
 	private RiesgoVinculado riesgo_vinculado;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="responsable_id", unique=true)
+	@JoinColumn(name="responsable_id")
 	private Responsable responsable;
 	
 	public Riesgo() {

@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,8 +22,8 @@ public class LineaDeNegocio {
 	@Column(name="tipo", nullable=false)
 	private String tipo;
 
-	@OneToOne(mappedBy="linea_de_negocio")
-	private Riesgo riesgo;
+	//@OneToOne(mappedBy="linea_de_negocio")
+	//private Riesgo riesgo;
 	
 	public LineaDeNegocio() {
 		

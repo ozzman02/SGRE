@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +19,8 @@ public class AccionCorrectiva {
 	@Column(name="descripcion", nullable=false)
 	private String descripcion;
 	
-	@OneToOne(mappedBy = "accion_correctiva")
-	private Riesgo riesgo;
+	//@OneToOne(mappedBy = "accion_correctiva")
+	//private Riesgo riesgo;
 
 	public Long getId() {
 		return id;

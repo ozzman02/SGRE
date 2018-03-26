@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,8 +25,8 @@ public class Responsable {
 	@Column(name="puesto", nullable=false)
 	private String puesto;
 	
-	@OneToOne(mappedBy = "responsable")
-	private Riesgo riesgo;
+	//@OneToOne(mappedBy = "responsable")
+	//private Riesgo riesgo;
 	
 	public Responsable() {
 		

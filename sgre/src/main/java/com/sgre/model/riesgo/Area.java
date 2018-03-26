@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +19,8 @@ public class Area {
 	@Column(name="descripcion", nullable=false)
 	private String descripcion;
 	
-	@OneToOne(mappedBy = "area")
-	private Riesgo riesgo;
+	//@OneToOne(mappedBy = "area")
+	//private Riesgo riesgo;
 	
 	public Area() {
 		

@@ -36,7 +36,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<form id="riesgo-form" th:object="${riesgo}" th:action="@{/guardar/}" method="post">
+						<form id="riesgo-form" th:object="${riesgo}" th:action="@{/modificar/}" method="post">
   							<fieldset>
   								 <input type="hidden" th:value="${riesgo.id}" name="id"/>
   								 <legend>Modificar Riesgo</legend>	
@@ -46,7 +46,7 @@
       									aria-describedby="" placeholder="Título" th:value="${riesgo.titulo}" />
       								<span class="help-block" th:if="${#fields.hasErrors('titulo')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('titulo')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('titulo')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>
@@ -56,52 +56,55 @@
       									placeholder="Descripción" th:value="${riesgo.descripcion}" />
       								<span class="help-block" th:if="${#fields.hasErrors('descripcion')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('descripcion')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('descripcion')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>
     							<div class="form-group" th:class="${#fields.hasErrors('categoria_evento_perdida')} ? 'form-group has-error' : 'form-group'">
       								<label for="categoriaEventoPerdida">Categoria de evento de pérdida</label>
       								<select class="form-control" id="categoriaEventoPerdida" th:field="*{categoria_evento_perdida}" th:errorclass="has-error">
-        								<option th:text="${riesgo.categoria_evento_perdida.descripcion}" 
-        									th:value="${riesgo.categoria_evento_perdida.id}">
-        								</option>
+        								<option th:if="${riesgo.categoria_evento_perdida_command != null}" 
+        									th:text="${riesgo.categoria_evento_perdida_command.descripcion}" 
+        									th:value="${riesgo.categoria_evento_perdida_command.id}">
+        								</option>	
         								<option value=""></option>
         								<option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.descripcion}"></option>
       								</select>
       								<span class="help-block" th:if="${#fields.hasErrors('categoria_evento_perdida')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('categoria_evento_perdida')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('categoria_evento_perdida')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>
     							<div class="form-group" th:class="${#fields.hasErrors('linea_de_negocio')} ? 'form-group has-error' : 'form-group'">
       								<label for="lineaDeNegocio">Liínea de negocio</label>
       								<select class="form-control" id="lineaDeNegocio" th:field="*{linea_de_negocio}" th:errorclass="has-error">
-        								<option th:text="${riesgo.linea_de_negocio.descripcion}" 
-        									th:value="${riesgo.linea_de_negocio.id}">
+        								<option th:if="${riesgo.linea_de_negocio_command != null}" 
+        									th:text="${riesgo.linea_de_negocio_command.descripcion}" 
+        									th:value="${riesgo.linea_de_negocio_command.id}">
         								</option>
         								<option value=""></option>
         								<option th:each="l : ${lineas}" th:value="${l.id}" th:text="${l.descripcion}"></option>
       								</select>
       								<span class="help-block" th:if="${#fields.hasErrors('linea_de_negocio')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('linea_de_negocio')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('linea_de_negocio')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>
     							<div class="form-group" th:class="${#fields.hasErrors('caracter_del_riesgo')} ? 'form-group has-error' : 'form-group'">
       								<label for="caracterDelRiesgo">Caracter del riesgo</label>
       								<select class="form-control" id="caracterDelRiesgo" th:field="*{caracter_del_riesgo}" th:errorclass="has-error">
-        								<option th:text="${riesgo.caracter_del_riesgo.descripcion}" 
-        									th:value="${riesgo.caracter_del_riesgo.id}">
+        								<option th:if="${riesgo.caracter_del_riesgo_command != null}" 
+        									th:text="${riesgo.caracter_del_riesgo_command.descripcion}" 
+        									th:value="${riesgo.caracter_del_riesgo_command.id}">
         								</option>
         								<option value=""></option>
         								<option th:each="c : ${caracteres}" th:value="${c.id}" th:text="${c.descripcion}"></option>
       								</select>
       								<span class="help-block" th:if="${#fields.hasErrors('caracter_del_riesgo')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('caracter_del_riesgo')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('caracter_del_riesgo')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>
@@ -113,15 +116,16 @@
     							<div class="form-group" th:class="${#fields.hasErrors('area')} ? 'form-group has-error' : 'form-group'">
       								<label for="area">Proceso o área a la que pertenece el riesgo</label>
       								<select class="form-control" id="area" th:field="*{area}" th:errorclass="has-error">
-        								<option th:text="${riesgo.area.descripcion}" 
-        									th:value="${riesgo.area.id}">
+        								<option th:if="${riesgo.area_command != null}" 
+        									th:text="${riesgo.area_command.descripcion}" 
+        									th:value="${riesgo.area_command.id}">
         								</option>
         								<option value=""></option>
         								<option th:each="a : ${areas}" th:value="${a.id}" th:text="${a.descripcion}"></option>
       								</select>
       								<span class="help-block" th:if="${#fields.hasErrors('area')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('area')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('area')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>
@@ -131,7 +135,7 @@
       									id="frecuencia" placeholder="Frecuencia" th:value="${riesgo.frecuencia}">
       								<span class="help-block" th:if="${#fields.hasErrors('frecuencia')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('frecuencia')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('frecuencia')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>
@@ -141,7 +145,7 @@
       									id="probabilidad" placeholder="Probabilidad" th:value="${riesgo.probabilidad}">
       								<span class="help-block" th:if="${#fields.hasErrors('probabilidad')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('probabilidad')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('probabilidad')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>
@@ -150,7 +154,6 @@
       								<input type="text" class="form-control" id="controlesDeRiesgo" placeholder="Controles de riesgo" 
       									th:field="*{controles_de_riesgo}" th:value="${riesgo.controles_de_riesgo}" />
     							</div>
-    							
     							<div class="form-group" th:class="${#fields.hasErrors('impacto_del_riesgo')} ? 'form-group has-error' : 'form-group'">
       								<label for="impactoDelRiesgoSelect">Impacto del riesgo</label>
       								<select class="form-control" id="impactoDelRiesgoSelect" th:field="*{impacto_del_riesgo}" th:errorclass="has-error">
@@ -165,7 +168,7 @@
       								</select>
       								<span class="help-block" th:if="${#fields.hasErrors('impacto_del_riesgo')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('impacto_del_riesgo')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('impacto_del_riesgo')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>
@@ -175,7 +178,7 @@
       									th:value="${riesgo.fecha_inicio}" />
       								<span class="help-block" th:if="${#fields.hasErrors('fecha_inicio')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('fecha_inicio')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('fecha_inicio')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>
@@ -241,16 +244,19 @@
       								<input type="text" class="form-control" id="tipoCambioPerdidaNeta" placeholder="Tipo de cambio de la pérdida neta"
       									th:field="*{tipo_cambio_perdida_neta}" th:value="${riesgo.tipo_cambio_perdida_neta}" />
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('aplica_cuenta_contable')} ? 'form-group has-error' : 'form-group'">
       								<label for="aplicaCuentaContable">Aplica cuenta contable</label>
-      								<select class="form-control" id="aplicaCuentaContable" th:field="*{aplica_cuenta_contable}">
-      									<option th:text="${riesgo.aplica_cuenta_contable}" 
-        									th:value="${riesgo.aplica_cuenta_contable}">
-        								</option>
+      								<select class="form-control" id="aplicaCuentaContable"  th:field="*{aplica_cuenta_contable}" th:errorclass="has-error">
+      									<option th:text="${riesgo.aplica_cuenta_contable}" th:value="${riesgo.aplica_cuenta_contable}"></option>
         								<option value=""></option>
         								<option value="SI">SI</option>
         								<option value="NO">NO</option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('aplica_cuenta_contable')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('aplica_cuenta_contable')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
     							<div class="form-group">
       								<label for="notasCuentaContable">Notas de la cuenta contable</label>
@@ -260,8 +266,9 @@
     							<div class="form-group">
       								<label for="accionCorrectiva">Acción Correctiva</label>
       								<select class="form-control" id="accionCorrectiva" th:field="*{accion_correctiva}">
-        								<option th:text="${riesgo.accion_correctiva.descripcion}" 
-        									th:value="${riesgo.accion_correctiva.id}">
+        								<option th:if="${riesgo.accion_correctiva_command != null}" 
+        									th:text="${riesgo.accion_correctiva_command.descripcion}" 
+        									th:value="${riesgo.accion_correctiva_command.id}">
         								</option>
         								<option value=""></option>
         								<option th:each="a : ${acciones}" th:value="${a.id}" th:text="${a.descripcion}"></option>
@@ -270,8 +277,9 @@
     							<div class="form-group">
       								<label for="riesgoVinculado">Riesgo vinculado</label>
       								<select class="form-control" id="riesgoVinculado" th:field="*{riesgo_vinculado}">
-        								<option th:text="${riesgo.riesgo_vinculado.descripcion}" 
-        									th:value="${riesgo.riesgo_vinculado.id}">
+        								<option th:if="${riesgo.riesgo_vinculado_command != null}"
+        									th:text="${riesgo.riesgo_vinculado_command.descripcion}" 
+        									th:value="${riesgo.riesgo_vinculado_command.id}">
         								</option>
         								<option value=""></option>
         								<option th:each="r : ${riesgosVinculados}" th:value="${r.id}" th:text="${r.descripcion}"></option>
@@ -283,15 +291,16 @@
       									th:field="*{plazo_ejecucion}" th:errorclass="has-error" th:value="${riesgo.plazo_ejecucion}" />
       								<span class="help-block" th:if="${#fields.hasErrors('plazo_ejecucion')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('plazo_ejecucion')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('plazo_ejecucion')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>    							
     							<div class="form-group"  th:class="${#fields.hasErrors('responsable')} ? 'form-group has-error' : 'form-group'">
       								<label for="responsable">Responsable</label>
       								<select class="form-control" id="responsable" th:field="*{responsable}" th:errorclass="has-error">
-        								<option th:text="${riesgo.responsable.nombre} + ' ' + ${riesgo.responsable.apellido}" 
-        									th:value="${riesgo.responsable.id}">
+        								<option th:if="${riesgo.responsable_command != null}"
+        									th:text="${riesgo.responsable_command.nombre} + ' ' + ${riesgo.responsable_command.apellido}" 
+        									th:value="${riesgo.responsable_command.id}">
         								</option>
         								<option value=""></option>
         								<option th:each="r : ${responsables}" th:value="${r.id}" 
@@ -299,7 +308,7 @@
       								</select>
       								<span class="help-block" th:if="${#fields.hasErrors('responsable')}">
               							<ul>
-											<li th:each="err : ${#fields.errors('responsable')}" th:text="${err}" />
+											<li class="alert" th:each="err : ${#fields.errors('responsable')}" th:text="${err}" />
 										</ul>
 									</span>
     							</div>

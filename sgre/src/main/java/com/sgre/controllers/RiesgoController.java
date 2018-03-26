@@ -1,15 +1,19 @@
 package com.sgre.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sgre.commands.riesgo.RiesgoCommand;
-import com.sgre.converters.RiesgoConverter;
+import com.sgre.converters.riesgos.RiesgoCommandToRiesgoConverter;
+import com.sgre.converters.riesgos.RiesgoToRiesgoCommandConverter;
 import com.sgre.model.riesgo.Riesgo;
 import com.sgre.service.riesgo.AccionCorrectivaService;
 import com.sgre.service.riesgo.AreaService;
@@ -48,7 +52,10 @@ public class RiesgoController {
 	private RiesgoVinculadoService riesgoVinculadoService;
 	
 	@Autowired
-	private RiesgoConverter converter;
+	private RiesgoCommandToRiesgoConverter riesgoConverter;
+	
+	@Autowired
+	private RiesgoToRiesgoCommandConverter commandConverter;
 	
 	@GetMapping("riesgos/listar")
 	public String listarRiesgos(Model model) {
@@ -65,6 +72,10 @@ public class RiesgoController {
 	@GetMapping("riesgos/{id}/modificar")
 	public String modificarRiesgo(@PathVariable String id, Model model) {
 		
+		Riesgo riesgo = riesgoService.buscarRiesgoPorId(Long.valueOf(id));
+	
+		RiesgoCommand riesgoCommand = commandConverter.convert(riesgo);
+		
 		model.addAttribute("riesgosVinculados", riesgoVinculadoService.listarRiesgosVinculados());
 		model.addAttribute("responsables", responsableService.listarResponsables());
 		model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
@@ -72,16 +83,71 @@ public class RiesgoController {
 		model.addAttribute("acciones", accionCorrectivaService.listarAcciones());
 		model.addAttribute("categorias", categoriaEventoPerdidaService.listarCategorias());
 		model.addAttribute("caracteres", caracterDelRiesgoService.listar());
-		model.addAttribute("riesgo", riesgoService.buscarRiesgoPorId(Long.valueOf(id)));
+		model.addAttribute("riesgo", riesgoCommand);
 		
 		return "riesgos/modificar-riesgo";
 	}
 	
+	@GetMapping("riesgos/crear")
+	public String crearRiesgo(Model model) {
+		
+		model.addAttribute("riesgosVinculados", riesgoVinculadoService.listarRiesgosVinculados());
+		model.addAttribute("responsables", responsableService.listarResponsables());
+		model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
+		model.addAttribute("areas", areaService.listarAreas());
+		model.addAttribute("acciones", accionCorrectivaService.listarAcciones());
+		model.addAttribute("categorias", categoriaEventoPerdidaService.listarCategorias());
+		model.addAttribute("caracteres", caracterDelRiesgoService.listar());
+		model.addAttribute("riesgo", new RiesgoCommand());
+		
+		return "riesgos/crear-riesgo";
+	}
+	
 	@PostMapping("guardar")
-	public String guardarRiesgo(@ModelAttribute RiesgoCommand command) {
-		Riesgo riesgo = converter.convert(command);
+	public String guardarRiesgo(@Valid @ModelAttribute("riesgo") RiesgoCommand command, 
+			BindingResult bindingResult, Model model) {
+	
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("riesgosVinculados", riesgoVinculadoService.listarRiesgosVinculados());
+			model.addAttribute("responsables", responsableService.listarResponsables());
+			model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
+			model.addAttribute("areas", areaService.listarAreas());
+			model.addAttribute("acciones", accionCorrectivaService.listarAcciones());
+			model.addAttribute("categorias", categoriaEventoPerdidaService.listarCategorias());
+			model.addAttribute("caracteres", caracterDelRiesgoService.listar());
+			
+			return "riesgos/crear-riesgo";
+		}
+		
+		Riesgo riesgo = riesgoConverter.convert(command);
 		riesgoService.guardarRiesgo(riesgo);
+		
 		return "redirect:/riesgos/listar";
+		
+	}
+	
+	@PostMapping("modificar")
+	public String guardarModificacion(@Valid @ModelAttribute("riesgo") RiesgoCommand command, 
+			BindingResult bindingResult, Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			
+			model.addAttribute("riesgosVinculados", riesgoVinculadoService.listarRiesgosVinculados());
+			model.addAttribute("responsables", responsableService.listarResponsables());
+			model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
+			model.addAttribute("areas", areaService.listarAreas());
+			model.addAttribute("acciones", accionCorrectivaService.listarAcciones());
+			model.addAttribute("categorias", categoriaEventoPerdidaService.listarCategorias());
+			model.addAttribute("caracteres", caracterDelRiesgoService.listar());
+			
+			return "riesgos/modificar-riesgo";
+		}
+		
+		Riesgo riesgo = riesgoConverter.convert(command);
+		riesgoService.guardarRiesgo(riesgo);
+		
+		return "redirect:/riesgos/listar";
+		
 	}
 	
 }
