@@ -16,7 +16,7 @@ import com.sgre.model.evento.Area;
 import com.sgre.model.evento.CaracterDelEvento;
 import com.sgre.model.evento.CategoriaEventoPerdida;
 import com.sgre.model.evento.LineaDeNegocio;
-import com.sgre.model.riesgo.Responsable;
+import com.sgre.model.evento.Responsable;
 
 @Entity
 @Table(name = "evento")
