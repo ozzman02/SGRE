@@ -22,6 +22,7 @@ public class RiesgoCommand {
 	private String frecuencia = "1";
 	
 	@NotEmpty
+	@Pattern(regexp = "(^[+]?([0-9]+(?:[\\.][0-9]*)?|\\.[0-9]+)$)", message="La probabilidad debe ser un número decimal válido")
 	private String probabilidad = "0.0";
 	
 	private String controles_de_riesgo;
