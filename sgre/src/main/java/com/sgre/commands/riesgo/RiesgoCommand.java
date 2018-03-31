@@ -2,6 +2,7 @@ package com.sgre.commands.riesgo;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import com.sgre.model.riesgo.AplicaCuentaContable;
 import com.sgre.model.riesgo.ImpactoDelRiesgo;
@@ -17,14 +18,15 @@ public class RiesgoCommand {
 	private String descripcion;
 	
 	@NotEmpty
-	private String frecuencia;
+	@Pattern(regexp = "^(([0-9][1-9])|([1-9][0-9])|[1-9])$", message="La frecuencia debe ser un número entero")
+	private String frecuencia = "1";
 	
 	@NotEmpty
-	private String probabilidad;
+	private String probabilidad = "0.0";
 	
 	private String controles_de_riesgo;
 	
-	@NotNull
+	@NotNull(message="No puede estar vacío")
 	private ImpactoDelRiesgo impacto_del_riesgo;
 	
 	@NotEmpty
@@ -36,21 +38,26 @@ public class RiesgoCommand {
 	
 	private String fecha_registro_contable;
 	
-	private String monto_bruto_perdida;
+	@Pattern(regexp = "(^[+]?([0-9]+(?:[\\.][0-9]*)?|\\.[0-9]+)$)", message="El monto debe ser un número decimal válido")
+	private String monto_bruto_perdida = "0.0";
 	
 	private String tipo_moneda_perdida_bruta;
 	
-	private String tipo_cambio_perdida_bruta;
+	@Pattern(regexp = "(^[+]?([0-9]+(?:[\\.][0-9]*)?|\\.[0-9]+)$)", message="El tipo de cambio debe ser un número decimal válido")
+	private String tipo_cambio_perdida_bruta = "0.0";
 	
-	private String monto_total_recuperado;
+	@Pattern(regexp = "(^[+]?([0-9]+(?:[\\.][0-9]*)?|\\.[0-9]+)$)", message="El monto debe ser un número decimal válido")
+	private String monto_total_recuperado = "0.0";
 	
-	private String monto_neto_perdida;
+	@Pattern(regexp = "(^[+]?([0-9]+(?:[\\.][0-9]*)?|\\.[0-9]+)$)", message="El monto debe ser un número decimal válido")
+	private String monto_neto_perdida = "0.0";
 	
 	private String tipo_moneda_perdida_neta;
 	
-	private String tipo_cambio_perdida_neta;
+	@Pattern(regexp = "(^[+]?([0-9]+(?:[\\.][0-9]*)?|\\.[0-9]+)$)", message="El tipo de cambio debe ser un número decimal válido")
+	private String tipo_cambio_perdida_neta = "0.0";
 	
-	@NotNull
+	@NotNull(message="No puede estar vacío")
 	private AplicaCuentaContable aplica_cuenta_contable;
 	
 	private String notas_cuenta_contable;
