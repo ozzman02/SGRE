@@ -3,12 +3,12 @@ package com.sgre.model.riesgo;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -23,8 +23,8 @@ import org.hibernate.annotations.Type;
 public class Riesgo {
 	
 	@Id 
-	@GeneratedValue
-	@Column(name="id", unique = true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id", nullable=false)
 	private Long id;
 	
 	@Column(name="titulo", nullable=false)
@@ -96,34 +96,34 @@ public class Riesgo {
 	@Column(name="observaciones_generales", nullable=true)
 	private String observaciones_generales;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne
 	@JoinColumn(name="categoria_evento_perdida_id")
 	private CategoriaEventoPerdida categoria_evento_perdida;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne
 	@JoinColumn(name="linea_de_negocio_id")
 	private LineaDeNegocio linea_de_negocio;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne
 	@JoinColumn(name="caracter_del_riesgo_id")
 	private CaracterDelRiesgo caracter_del_riesgo;
 	
 	@Column(name="detalle", nullable=true)
 	private String detalle;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne
 	@JoinColumn(name="area_id")
 	private Area area;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne
 	@JoinColumn(name="accion_correctiva_id")
 	private AccionCorrectiva accion_correctiva;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne
 	@JoinColumn(name="riesgo_vinculado_id")
 	private RiesgoVinculado riesgo_vinculado;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@OneToOne
 	@JoinColumn(name="responsable_id")
 	private Responsable responsable;
 	
