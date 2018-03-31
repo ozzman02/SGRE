@@ -33,10 +33,18 @@
   			</div>
 		</nav>
 		<section>
-			<div class="container">
+			<div class="container" th:if="${#lists.isEmpty(riesgos)}">
+				<br>
+				<h3 class="text-center">No existen riesgos registrados</h3>
+				<br>
+				<div class="text-center">
+					<a id="btn-crear-riesgo2" href="crear-riesgo.html" th:href="@{/riesgos/crear}" type="button" class="btn btn-primary">Crear Riesgo</a>
+				</div>
+			</div>
+			<div class="container" th:if="${not #lists.isEmpty(riesgos)}">
 				<div class="row">
 					<div class="col-md-12">
-						<a id="btn-crear-riesgo" href="crear-riesgo.html" type="button" class="btn btn-primary">Crear Riesgo</a>
+						<a id="btn-crear-riesgo" href="crear-riesgo.html" th:href="@{/riesgos/crear}" type="button" class="btn btn-primary">Crear Riesgo</a>
 						<form class="form-inline my-2 my-lg-0">
       						<input class="form-control mr-sm-2" type="text" placeholder="Buscar Riesgo">
       						<button class="btn btn-secondary my-2 my-sm-0" type="submit">
@@ -121,9 +129,6 @@
 								</tr>
 							</tbody>
 						</table>
-					</div>
-					<div th:if="${#lists.isEmpty(riesgos)}">
-						<h3 class="text-center">No existen riesgos registrados</h3>
 					</div>
 				</div>
 				<div th:if="${not #lists.isEmpty(riesgos)}">

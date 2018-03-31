@@ -1,4 +1,4 @@
-package com.sgre.converters.riesgo;
+package com.sgre.converters.riesgos;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import com.sgre.commands.riesgo.CategoriaEventoPerdidaCommand;
 import com.sgre.model.riesgo.CategoriaEventoPerdida;
 
 @Component
-public class CategoriaEventoPerdidaToCategoriaEventoPerdidaCommand
+public class CategoriaEventoPerdidaToCategoriaEventoPerdidaCommandConverter
 		implements Converter<CategoriaEventoPerdida, CategoriaEventoPerdidaCommand> {
 
 	@Override
@@ -17,12 +17,11 @@ public class CategoriaEventoPerdidaToCategoriaEventoPerdidaCommand
 			return null;
 		}
 		
-		final CategoriaEventoPerdidaCommand categoriaEventoPerdidaCommand = new CategoriaEventoPerdidaCommand();
+		CategoriaEventoPerdidaCommand command = new CategoriaEventoPerdidaCommand();
+		command.setId(String.valueOf(source.getId()));
+		command.setDescripcion(source.getDescripcion());
 		
-		categoriaEventoPerdidaCommand.setId(source.getId());
-		categoriaEventoPerdidaCommand.setDescripcion(source.getDescripcion());
-		
-		return categoriaEventoPerdidaCommand;
+		return command;
 	}
 
 }

@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +12,7 @@ import javax.persistence.Table;
 public class Responsable {
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id", unique=true, nullable=false)
 	private Long id;
 	
@@ -25,9 +24,6 @@ public class Responsable {
 	
 	@Column(name="puesto", nullable=false)
 	private String puesto;
-	
-	@OneToOne(mappedBy = "responsable")
-	private Riesgo riesgo;
 	
 	public Responsable() {
 		

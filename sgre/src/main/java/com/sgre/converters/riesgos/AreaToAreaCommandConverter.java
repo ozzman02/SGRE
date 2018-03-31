@@ -1,4 +1,4 @@
-package com.sgre.converters.riesgo;
+package com.sgre.converters.riesgos;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import com.sgre.commands.riesgo.AreaCommand;
 import com.sgre.model.riesgo.Area;
 
 @Component
-public class AreaToAreaCommand implements Converter<Area, AreaCommand> {
+public class AreaToAreaCommandConverter implements Converter<Area, AreaCommand> {
 
 	@Override
 	public AreaCommand convert(Area source) {
@@ -16,12 +16,11 @@ public class AreaToAreaCommand implements Converter<Area, AreaCommand> {
 			return null;
 		}
 		
-		final AreaCommand areaCommand = new AreaCommand();
+		AreaCommand command = new AreaCommand();
+		command.setId(String.valueOf(source.getId()));
+		command.setDescripcion(source.getDescripcion());
 		
-		areaCommand.setId(source.getId());
-		areaCommand.setDescripcion(source.getDescripcion());
-		
-		return areaCommand;
+		return command;
 	}
 
 }

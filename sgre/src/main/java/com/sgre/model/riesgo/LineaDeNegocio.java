@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +12,7 @@ import javax.persistence.Table;
 public class LineaDeNegocio {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id", unique=true, nullable=false)
 	private Long id;
 	
@@ -22,9 +21,6 @@ public class LineaDeNegocio {
 	
 	@Column(name="tipo", nullable=false)
 	private String tipo;
-
-	@OneToOne(mappedBy="linea_de_negocio")
-	private Riesgo riesgo;
 	
 	public LineaDeNegocio() {
 		

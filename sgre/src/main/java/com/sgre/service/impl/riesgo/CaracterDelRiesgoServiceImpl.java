@@ -1,6 +1,8 @@
 package com.sgre.service.impl.riesgo;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sgre.dao.riesgo.CaracterDelRiesgoRepository;
@@ -16,6 +18,12 @@ public class CaracterDelRiesgoServiceImpl implements CaracterDelRiesgoService {
 	public List<CaracterDelRiesgo> listar() {
 		Iterable<CaracterDelRiesgo> lista = repository.findAll();
 		return (List<CaracterDelRiesgo>) lista;
+	}
+
+	@Override
+	public CaracterDelRiesgo buscarCaracterPorId(Long id) {
+		Optional<CaracterDelRiesgo> caracter = repository.findById(id);
+		return caracter.get();
 	}
 
 }

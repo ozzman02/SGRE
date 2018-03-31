@@ -1,4 +1,4 @@
-package com.sgre.converters.riesgo;
+package com.sgre.converters.riesgos;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import com.sgre.commands.riesgo.CaracterDelRiesgoCommand;
 import com.sgre.model.riesgo.CaracterDelRiesgo;
 
 @Component
-public class CaracterDelRiesgoToCaracterDelRiesgoCommand
+public class CaracterDelRiesgoToCaracterDelRiesgoCommandConverter
 		implements Converter<CaracterDelRiesgo, CaracterDelRiesgoCommand> {
 
 	@Override
@@ -17,12 +17,11 @@ public class CaracterDelRiesgoToCaracterDelRiesgoCommand
 			return null;
 		}
 		
-		final CaracterDelRiesgoCommand caracterDelRiesgoCommand = new CaracterDelRiesgoCommand();
+		CaracterDelRiesgoCommand command = new CaracterDelRiesgoCommand();
+		command.setId(String.valueOf(source.getId()));
+		command.setDescripcion(source.getDescripcion());
 		
-		caracterDelRiesgoCommand.setId(source.getId());
-		caracterDelRiesgoCommand.setDescripcion(source.getDescripcion());
-		
-		return caracterDelRiesgoCommand;
+		return command;
 	}
 
 }

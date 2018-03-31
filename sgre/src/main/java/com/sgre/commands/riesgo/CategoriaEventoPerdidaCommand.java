@@ -2,15 +2,15 @@ package com.sgre.commands.riesgo;
 
 public class CategoriaEventoPerdidaCommand {
 	
-	private Long id;
+	private String id;
 	
 	private String descripcion;
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -20,6 +20,11 @@ public class CategoriaEventoPerdidaCommand {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	@Override
+	public String toString() {
+		return "CategoriaEventoPerdidaCommand [id=" + id + ", descripcion=" + descripcion + "]";
 	}
 	
 }
