@@ -52,7 +52,7 @@ public class RiesgoDBConfiguration {
 	private DatabasePopulator databasePopulator() {
 		ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
 		resourceDatabasePopulator.setContinueOnError(true);
-		resourceDatabasePopulator.addScript(new ClassPathResource("data.sql"));
+		resourceDatabasePopulator.addScript(new ClassPathResource("riesgo_data.sql"));
 		return resourceDatabasePopulator;
 	}
 	
