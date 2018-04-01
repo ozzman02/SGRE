@@ -60,7 +60,6 @@ public class Evento {
 	@Column(name="tipo_cambio_perdida", nullable=true)
 	private BigDecimal tipo_cambio_perdida;
 	
-
 	@OneToOne
 	@JoinColumn(name="responsable_id")
 	private Responsable responsable;
