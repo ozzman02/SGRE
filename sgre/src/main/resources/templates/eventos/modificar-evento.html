@@ -23,8 +23,8 @@
   			</button>
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
-      				<li class="nav-item active"><a class="nav-link" href="../riesgos/listar-riesgos.html">Riesgos</a></li>
-      				<li class="nav-item"><a class="nav-link" href="listar-eventos.html">Eventos</a></li>
+      				<li class="nav-item"><a class="nav-link" href="../riesgos/listar-riesgos.html" th:href="@{/riesgos/listar}">Riesgos</a></li>
+      				<li class="nav-item active"><a class="nav-link" href="listar-eventos.html" th:href="@{/eventos/listar}">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
           			<li><a class="not-active" href="#">Bienvenido Oscar Santamaria</a></li>
@@ -36,102 +36,152 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<form id="riesgo-form">
+						<form id="riesgo-form" th:object="${evento}" th:action="@{/modificar/evento}" method="post">
   							<fieldset>
-  								 <legend>Modificar Evento</legend>	
-    							<div class="form-group">
+  								<input type="hidden" th:value="${evento.id}" name="id"/>
+  								<legend>Modificar Evento</legend>	
+    							<div class="form-group" th:class="${#fields.hasErrors('titulo')} ? 'form-group has-error' : 'form-group'">
       								<label for="titulo">Título</label>
-      								<input type="text" class="form-control" id="titulo" aria-describedby="" placeholder="Título">
+      								<input type="text" th:field="*{titulo}" th:errorclass="has-error" class="form-control" id="titulo" 
+      									aria-describedby="" placeholder="Título" th:value="${evento.titulo}" />
+      								<span class="help-block" th:if="${#fields.hasErrors('titulo')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('titulo')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('descripcion')} ? 'form-group has-error' : 'form-group'">
       								<label for="descripcion">Descripción</label>
-      								<input type="text" class="form-control" id="descripcion" placeholder="Descripción">
+      								<input type="text" th:field="*{descripcion}" th:errorclass="has-error" class="form-control" id="descripcion" 
+      									placeholder="Descripción" th:value="${evento.descripcion}" />
+      								<span class="help-block" th:if="${#fields.hasErrors('descripcion')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('descripcion')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('categoria_evento_perdida')} ? 'form-group has-error' : 'form-group'">
       								<label for="categoriaEventoPerdida">Categoria de evento de pérdida</label>
-      								<select class="form-control" id="categoriaEventoPerdida">
-        								<option></option>
-        								<option>Fraude interno</option>
-        								<option>Fraude externo</option>
-        								<option>Relaciones laborales y seguridad en el puesto de trabajo</option>
-        								<option>Clientes, productos y prácticas empresariales</option>
-        								<option>Daños a activos materiales</option>
-        								<option>Interrupción del negocio y fallos en los sistemas</option>
-        								<option>Ejecución entrega y gestión de procesos</option>
+      								<select class="form-control" id="categoriaEventoPerdida" th:field="*{categoria_evento_perdida}" th:errorclass="has-error">
+        								<option th:if="${evento.categoria_evento_perdida_command != null}" 
+        									th:text="${evento.categoria_evento_perdida_command.descripcion}" 
+        									th:value="${evento.categoria_evento_perdida_command.id}">
+        								</option>	
+        								<option value=""></option>
+        								<option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.descripcion}"></option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('categoria_evento_perdida')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('categoria_evento_perdida')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('linea_de_negocio')} ? 'form-group has-error' : 'form-group'">
       								<label for="lineaDeNegocio">Liínea de negocio</label>
-      								<select class="form-control" id="lineaDeNegocio">
-        								<option></option>
-        								<option>Finanzas corporativas</option>
-        								<option>Finanzas de administraciones locales y públicas</option>
-        								<option>Banca de inversión</option>
-        								<option>Servicios de asesoramiento</option>
-        								<option>Tesorería por cuentas de terceros</option>
-        								<option>Tesorería posiciones propias</option>
-        								<option>Tesorería Tradicional</option>
-        								<option>Banca de Personas</option>
-        								<option>Banca Privada</option>
-        								<option>Banca de desarrollo minorista</option>
-        								<option>Banca corporativa</option>
-        								<option>Banca empresarial</option>
-        								<option>Banca de Desarrollo Comercial</option>
-        								<option>Banca de Segundo Piso</option>
-        								<option>Tarjetas de crédito y débito</option>
-        								<option>Administración y Adhesión de comercios</option>
-        								<option>Cobros, pagos y liquidación</option>
-        								<option>Administración de Fondos de Cesantía</option>
-        								<option>Administración de peaje bancario y otros</option>
-        								<option>Administración de fideicomisos</option>
-        								<option>Administración de Fondos de Pensión</option>
-        								<option>Custodia</option>
-        								<option>Comercialización de Seguros autoexpedibles</option>
-        								<option>Tecnología de la información y comunicación</option>
-        								<option>Cambios y transformaciones organizacionales</option>
-        								<option>Otros procesos Transversales a la Organización</option>
+      								<select class="form-control" id="lineaDeNegocio" th:field="*{linea_de_negocio}" th:errorclass="has-error">
+        								<option th:if="${evento.linea_de_negocio_command != null}" 
+        									th:text="${evento.linea_de_negocio_command.descripcion}" 
+        									th:value="${evento.linea_de_negocio_command.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="l : ${lineas}" th:value="${l.id}" th:text="${l.descripcion}"></option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('linea_de_negocio')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('linea_de_negocio')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('caracter_del_evento')} ? 'form-group has-error' : 'form-group'">
       								<label for="caracterDelEvento">Caracter del evento</label>
-      								<select class="form-control" id="caracterDelEvento">
-        								<option></option>
-        								<option>Cuasipérdida</option>
+      								<select class="form-control" id="caracterDelEvento" th:field="*{caracter_del_evento}" th:errorclass="has-error">
+        								<option th:if="${evento.caracter_del_evento_command != null}" 
+        									th:text="${evento.caracter_del_evento_command.descripcion}" 
+        									th:value="${evento.caracter_del_evento_command.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="c : ${caracteres}" th:value="${c.id}" th:text="${c.descripcion}"></option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('caracter_del_evento')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('caracter_del_evento')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
     							<div class="form-group">
       								<label for="detalle">Detalle</label>
-      								<input type="text" class="form-control" id="detalle" placeholder="Detalle">
+      								<input type="text" class="form-control" id="detalle" placeholder="Detalle" th:field="*{detalle}" 
+      									th:value="${evento.detalle}" />
     							</div>
-    							<div class="form-group">
-      								<label for="area">Proceso o área a la que pertenece el evento</label>
-      								<select class="form-control" id="area">
-        								<option></option>
-        								<option>Área de negocio</option>
-        								<option>Proceso</option>
-        								<option>Subproceso</option>
-        								<option>Producto</option>
+    							<div class="form-group" th:class="${#fields.hasErrors('area')} ? 'form-group has-error' : 'form-group'">
+      								<label for="area">Proceso o área a la que pertenece el riesgo</label>
+      								<select class="form-control" id="area" th:field="*{area}" th:errorclass="has-error">
+        								<option th:if="${evento.area_command != null}" 
+        									th:text="${evento.area_command.descripcion}" 
+        									th:value="${evento.area_command.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="a : ${areas}" th:value="${a.id}" th:text="${a.descripcion}"></option>
       								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('area')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('area')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('monto_estimado_perdida')} ? 'form-group has-error' : 'form-group'">
       								<label for="montoEstimadoPerdida">Monto estimado de la pérdida</label>
-      								<input type="text" class="form-control" id="montoEstimadoPerdida" placeholder="Monto estimado de la pérdida">
+      								<input type="text" th:field="*{monto_estimado_perdida}" th:errorclass="has-error" class="form-control" 
+      									id="montoEstimadoPerdida" placeholder="Monto estimado de la pérdida" th:value="${evento.monto_estimado_perdida}" />
+      								<span class="help-block" th:if="${#fields.hasErrors('monto_estimado_perdida')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('monto_estimado_perdida')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" >
       								<label for="monedaDeLaPerdida">Tipo de moneda de la pérdida</label>
-      								<select class="form-control" id="monedaDeLaPerdida">
-        								<option></option>
-        								<option>₡ (colones)</option>
-        								<option>$ (dólares)</option>
+      								<select class="form-control" id="monedaDeLaPerdida" th:field="*{tipo_moneda_perdida}">
+      									<option th:text="${evento.tipo_moneda_perdida}" 
+											th:value="${evento.tipo_moneda_perdida}">
+        								</option>
+        								<option value=""></option>
+        								<option value="₡ (colones)">₡ (colones)</option>
+        								<option value="$ (dólares)">$ (dólares)</option>
       								</select>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('tipo_cambio_perdida')} ? 'form-group has-error' : 'form-group'">
       								<label for="tipoCambioPerdida">Tipo de cambio de la pérdida</label>
-      								<input type="text" class="form-control" id="tipoCambioPerdida" placeholder="Tipo de cambio de la pérdida">
-    							</div>    							
+      								<input type="text" th:field="*{tipo_cambio_perdida}" th:errorclass="has-error" 
+      									class="form-control" id="tipoCambioPerdida" placeholder="Tipo de cambio de la pérdida" 
+      										th:value="${evento.tipo_cambio_perdida}" />
+      								<span class="help-block" th:if="${#fields.hasErrors('tipo_cambio_perdida')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('tipo_cambio_perdida')}" th:text="${err}" />
+										</ul>
+									</span>
+    							</div>    					
+    							<div class="form-group"  th:class="${#fields.hasErrors('responsable')} ? 'form-group has-error' : 'form-group'">
+      								<label for="responsable">Responsable</label>
+      								<select class="form-control" id="responsable" th:field="*{responsable}" th:errorclass="has-error">
+        								<option th:if="${evento.responsable_command != null}"
+        									th:text="${evento.responsable_command.nombre} + ' ' + ${evento.responsable_command.apellido}" 
+        									th:value="${evento.responsable_command.id}">
+        								</option>
+        								<option value=""></option>
+        								<option th:each="r : ${responsables}" th:value="${r.id}" 
+        									th:text="${r.nombre} + ' ' + ${r.apellido}"></option>
+      								</select>
+      								<span class="help-block" th:if="${#fields.hasErrors('responsable')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('responsable')}" th:text="${err}" />
+										</ul>
+									</span>
+    							</div>		
     							<div class="form-group">
       								<label for="observaciones">Observaciones</label>
-      								<textarea class="form-control" id="observaciones" rows="3"></textarea>
+      								<textarea class="form-control" id="observaciones" rows="3" th:field="*{observaciones_generales}" 
+      									th:value="${evento.observaciones_generales}"></textarea>
     							</div>
     							<button type="submit" class="btn btn-primary">Guardar</button>
   							</fieldset>

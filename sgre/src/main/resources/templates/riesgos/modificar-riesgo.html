@@ -24,7 +24,7 @@
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
       				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html" th:href="@{/riesgos/listar}">Riesgos</a></li>
-      				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html">Eventos</a></li>
+      				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html" th:href="@{/eventos/listar}">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
           			<li><a class="not-active" href="#">Bienvenido Oscar Santamaria</a></li>
@@ -197,10 +197,15 @@
       								<input type="date" class="form-control" id="fechaRegistroContable" th:field="*{fecha_registro_contable}" 
       									th:value="${riesgo.fecha_registro_contable}" />
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('monto_bruto_perdida')} ? 'form-group has-error' : 'form-group'">
       								<label for="montoBrutoPerdida">Monto bruto de la pérdida</label>
       								<input type="text" class="form-control" id="montoBrutoPerdida" placeholder="Monto bruto de la pérdida"
-      									th:field="*{monto_bruto_perdida}" th:value="${riesgo.monto_bruto_perdida}" />
+      									th:field="*{monto_bruto_perdida}" th:value="${riesgo.monto_bruto_perdida}" th:errorclass="has-error" />
+      								<span class="help-block" th:if="${#fields.hasErrors('monto_bruto_perdida')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('monto_bruto_perdida')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
     							<div class="form-group">
       								<label for="monedaPerdidaBruta">Tipo de moneda de la pérdida bruta</label>
@@ -213,20 +218,35 @@
         								<option value="$ (dólares)">$ (dólares)</option>
       								</select>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('tipo_cambio_perdida_bruta')} ? 'form-group has-error' : 'form-group'">
       								<label for="tipoCambioPerdidaBruta">Tipo de cambio de la pérdida bruta</label>
       								<input type="text" class="form-control" id="tipoCambioPerdidaBruta" placeholder="Tipo de cambio de la pérdida bruta"
-      									th:field="*{tipo_cambio_perdida_bruta}" th:value="${riesgo.tipo_cambio_perdida_bruta}" />
+      									th:field="*{tipo_cambio_perdida_bruta}" th:value="${riesgo.tipo_cambio_perdida_bruta}" th:errorclass="has-error" />
+      								<span class="help-block" th:if="${#fields.hasErrors('tipo_cambio_perdida_bruta')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('tipo_cambio_perdida_bruta')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('monto_total_recuperado')} ? 'form-group has-error' : 'form-group'">
       								<label for="montoTotalRecuperado">Monto total recuperado</label>
       								<input type="text" class="form-control" id="montoTotalRecuperado" placeholder="Monto total recuperado"
-      									th:field="*{monto_total_recuperado}" th:value="${riesgo.monto_total_recuperado}" />	
+      									th:field="*{monto_total_recuperado}" th:value="${riesgo.monto_total_recuperado}" th:errorclass="has-error" />
+      								<span class="help-block" th:if="${#fields.hasErrors('monto_total_recuperado')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('monto_total_recuperado')}" th:text="${err}" />
+										</ul>
+									</span>		
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('monto_neto_perdida')} ? 'form-group has-error' : 'form-group'">
       								<label for="montoNetoPerdida">Monto neto de la pérdida</label>
       								<input type="text" class="form-control" id="montoNetoPerdida" placeholder="Monto neto de la pérdida"
-      									th:field="*{monto_neto_perdida}" th:value="${riesgo.monto_neto_perdida}" />
+      									th:field="*{monto_neto_perdida}" th:value="${riesgo.monto_neto_perdida}" th:errorclass="has-error" />
+      								<span class="help-block" th:if="${#fields.hasErrors('monto_neto_perdida')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('monto_neto_perdida')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
     							<div class="form-group">
       								<label for="monedaPerdidaNeta">Tipo de moneda de la pérdida neta</label>
@@ -239,10 +259,15 @@
         								<option value="$ (dólares)">$ (dólares)</option>
       								</select>
     							</div>
-    							<div class="form-group">
+    							<div class="form-group" th:class="${#fields.hasErrors('tipo_cambio_perdida_neta')} ? 'form-group has-error' : 'form-group'">
       								<label for="tipoCambioPerdidaNeta">Tipo de cambio de la pérdida neta</label>
       								<input type="text" class="form-control" id="tipoCambioPerdidaNeta" placeholder="Tipo de cambio de la pérdida neta"
-      									th:field="*{tipo_cambio_perdida_neta}" th:value="${riesgo.tipo_cambio_perdida_neta}" />
+      									th:field="*{tipo_cambio_perdida_neta}" th:value="${riesgo.tipo_cambio_perdida_neta}" th:errorclass="has-error" />
+      								<span class="help-block" th:if="${#fields.hasErrors('tipo_cambio_perdida_neta')}">
+              							<ul>
+											<li class="alert" th:each="err : ${#fields.errors('tipo_cambio_perdida_neta')}" th:text="${err}" />
+										</ul>
+									</span>
     							</div>
     							<div class="form-group" th:class="${#fields.hasErrors('aplica_cuenta_contable')} ? 'form-group has-error' : 'form-group'">
       								<label for="aplicaCuentaContable">Aplica cuenta contable</label>

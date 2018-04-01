@@ -84,6 +84,8 @@ public class EventoToEventoCommandConverter implements Converter<Evento, EventoC
 		
 		command.setTipo_moneda_perdida(source.getTipo_moneda_perdida());
 		
+		command.setObservaciones_generales(source.getObservaciones_generales());
+		
 		return command;
 	}
 
