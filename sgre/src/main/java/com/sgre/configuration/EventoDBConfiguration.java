@@ -20,6 +20,17 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.sgre.service.evento.AreaService;
+import com.sgre.service.evento.CaracterDelEventoService;
+import com.sgre.service.evento.EventoService;
+import com.sgre.service.evento.LineaDeNegocioService;
+import com.sgre.service.evento.ResponsableService;
+import com.sgre.service.impl.evento.AreaServiceImpl;
+import com.sgre.service.impl.evento.CaracterDelEventoServiceImpl;
+import com.sgre.service.impl.evento.EventoServiceImpl;
+import com.sgre.service.impl.evento.LineaDeNegocioServiceImpl;
+import com.sgre.service.impl.evento.ResponsableServiceImpl;
+
 @Configuration
 @PropertySource({ "classpath:persistence-multiple-db.properties" })
 @EnableJpaRepositories(
@@ -80,5 +91,29 @@ public class EventoDBConfiguration {
 		return transactionManager;
 	}
 	
+	@Bean
+	public EventoService eventoService() {
+		return new EventoServiceImpl();
+	}
+	
+	@Bean
+	public CaracterDelEventoService caracterDelEventoService() {
+		return new CaracterDelEventoServiceImpl();
+	}
+	
+	@Bean
+	public AreaService areaService() {
+		return new AreaServiceImpl();
+	}
+	
+	@Bean
+	public LineaDeNegocioService lineaDeNegocioService() {
+		return new LineaDeNegocioServiceImpl();
+	}
+	
+	@Bean
+	public ResponsableService responsableService() {
+		return new ResponsableServiceImpl();
+	}
 	
 }
