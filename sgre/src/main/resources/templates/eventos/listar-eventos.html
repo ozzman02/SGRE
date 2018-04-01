@@ -23,8 +23,8 @@
   			</button>
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
-      				<li class="nav-item"><a class="nav-link" href="../riesgos/listar-riesgos.html">Riesgos</a></li>
-      				<li class="nav-item active"><a class="nav-link" href="listar-eventos.html">Eventos</a></li>
+      				<li class="nav-item"><a class="nav-link" href="../riesgos/listar-riesgos.html" th:href="@{/riesgos/listar}">Riesgos</a></li>
+      				<li class="nav-item active"><a class="nav-link" href="listar-eventos.html" th:href="@{/eventos/listar}">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
           			<li><a class="not-active" href="#">Bienvenido Oscar Santamaria</a></li>
@@ -33,10 +33,18 @@
   			</div>
 		</nav>
 		<section>
-			<div class="container">
+			<div class="container" th:if="${#lists.isEmpty(eventos)}">
+				<br>
+				<h3 class="text-center">No existen eventos registrados</h3>
+				<br>
+				<div class="text-center">
+					<a id="btn-crear-riesgo2" href="crear-evento.html" th:href="@{/eventos/crear}" type="button" class="btn btn-primary">Crear Evento</a>
+				</div>
+			</div>
+			<div class="container" th:if="${not #lists.isEmpty(eventos)}">
 				<div class="row">
 					<div class="col-md-12">
-						<a id="btn-crear-evento" href="crear-evento.html" type="button" class="btn btn-primary">Crear Evento</a>
+						<a id="btn-crear-evento" href="crear-evento.html" th:href="@{/eventos/crear}" type="button" class="btn btn-primary">Crear Evento</a>
 						<form class="form-inline my-2 my-lg-0">
       						<input class="form-control mr-sm-2" type="text" placeholder="Buscar Evento">
       						<button class="btn btn-secondary my-2 my-sm-0" type="submit">
@@ -46,10 +54,10 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12 table-div">
+					<div class="col-md-12 table-div" th:if="${not #lists.isEmpty(eventos)}">
 						<table class="table table-striped text-center">
 							<thead>
-								<tr>
+								<tr> 
                   					<th>Id</th>
                   					<th>Título</th>
                   					<th>Descripción</th>
@@ -59,7 +67,7 @@
                 				</tr>
 							</thead>
 							<tbody>
-								<tr>
+								<tr th:remove="all">
 									<td>1</td>
 									<td>Evento de prueba1</td>
 									<td>Descripción de prueba1</td>
@@ -67,7 +75,7 @@
 									<td><a href="modificar-evento.html"><i class="fas fa-edit"></i></a></td>
 									<td><a><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
-								<tr>
+								<tr th:remove="all">
 									<td>2</td>
 									<td>Evento de prueba2</td>
 									<td>Descripción de prueba2</td>
@@ -75,7 +83,7 @@
 									<td><a href="modificar-evento.html"><i class="fas fa-edit"></i></a></td>
 									<td><a><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
-								<tr>
+								<tr th:remove="all">
 									<td>3</td>
 									<td>Evento de prueba3</td>
 									<td>Descripción de prueba3</td>
@@ -83,7 +91,7 @@
 									<td><a href="modificar-evento.html"><i class="fas fa-edit"></i></a></td>
 									<td><a><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
-								<tr>
+								<tr th:remove="all">
 									<td>4</td>
 									<td>Evento de prueba4</td>
 									<td>Descripción de prueba4</td>
@@ -91,7 +99,7 @@
 									<td><a href="modificar-evento.html"><i class="fas fa-edit"></i></a></td>
 									<td><a><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
-								<tr>
+								<tr th:remove="all">
 									<td>5</td>
 									<td>Evento de prueba5</td>
 									<td>Descripción de prueba5</td>
@@ -99,11 +107,31 @@
 									<td><a href="modificar-evento.html"><i class="fas fa-edit"></i></a></td>
 									<td><a><i class="fas fa-trash-alt"></i></a></td>
 								</tr>
+								<tr th:each="evento : ${eventos}">
+									<td th:text="${evento.id}">6</td>
+									<td th:text="${evento.titulo}">Riesgo de prueba6</td>
+									<td th:text="${evento.descripcion}">Descripción de prueba6</td>
+									<td>
+										<a href="consultar-evento.html" th:href="@{'/eventos/' + ${evento.id} + '/consultar'}">
+											<i class="fas fa-file"></i>
+										</a>
+									</td>
+									<td>
+										<a href="modificar-evento.html" th:href="@{'/eventos/' + ${evento.id} + '/modificar'}">
+											<i class="fas fa-edit"></i>
+										</a>
+									</td>
+									<td>
+										<a th:href="@{'/eventos/' + ${evento.id} + '/eliminar'}">
+											<i class="fas fa-trash-alt"></i>
+										</a>
+									</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<div>
+				<div th:if="${not #lists.isEmpty(eventos)}">
   					<ul class="pagination">
     					<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
     					<li class="page-item active"><a class="page-link" href="#">1</a></li>

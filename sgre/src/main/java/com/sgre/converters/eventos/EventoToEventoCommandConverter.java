@@ -1,6 +1,7 @@
 package com.sgre.converters.eventos;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -11,18 +12,23 @@ import com.sgre.model.evento.Evento;
 public class EventoToEventoCommandConverter implements Converter<Evento, EventoCommand> {
 
 	@Autowired
+	@Qualifier("eventoAreaToAreaCommandConverter")
 	private AreaToAreaCommandConverter areaConverter;
 	
 	@Autowired
+	@Qualifier("eventoCaracterDelEventoToCaracterDelEventoCommandConverter")
 	private CaracterDelEventoToCaracterDelEventoCommandConverter caracterDelEventoConverter;
 	
 	@Autowired
+	@Qualifier("eventoCategoriaEventoPerdidaToCategoriaEventoPerdidaCommandConverter")
 	private CategoriaEventoPerdidaToCategoriaEventoPerdidaCommandConverter categoriaEventoPerdidaConverter;
 	
 	@Autowired
+	@Qualifier("eventoLineaDeNegocioToLineaDeNegocioCommandConverter")
 	private LineaDeNegocioToLineaDeNegocioCommandConverter lineaDeNegocioConverter;
 	
 	@Autowired
+	@Qualifier("eventoResponsableToResponsableCommandConverter")
 	private ResponsableToResponsableCommandConverter responsableConverter;
 	
 	@Override

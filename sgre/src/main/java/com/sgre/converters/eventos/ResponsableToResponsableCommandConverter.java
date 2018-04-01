@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.sgre.commands.evento.ResponsableCommand;
 import com.sgre.model.evento.Responsable;
 
-@Component
+@Component(value="eventoResponsableToResponsableCommandConverter")
 public class ResponsableToResponsableCommandConverter implements Converter<Responsable, ResponsableCommand> {
 
 	@Override

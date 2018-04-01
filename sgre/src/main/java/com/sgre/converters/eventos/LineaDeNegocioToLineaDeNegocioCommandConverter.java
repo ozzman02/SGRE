@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.sgre.commands.evento.LineaDeNegocioCommand;
 import com.sgre.model.evento.LineaDeNegocio;
 
-@Component
+@Component(value="eventoLineaDeNegocioToLineaDeNegocioCommandConverter")
 public class LineaDeNegocioToLineaDeNegocioCommandConverter 
 	implements Converter<LineaDeNegocio, LineaDeNegocioCommand> {
 

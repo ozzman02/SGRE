@@ -3,6 +3,7 @@ package com.sgre.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,21 +27,27 @@ import com.sgre.service.evento.ResponsableService;
 public class EventoController {
 	
 	@Autowired
+	@Qualifier("eventoService")
 	private EventoService eventoService;
 	
 	@Autowired
+	@Qualifier("eventoCategoriaEventoPerdidaService")
 	private CategoriaEventoPerdidaService categoriaEventoPerdidaService;
 	
 	@Autowired
+	@Qualifier("caracterDelEventoService")
 	private CaracterDelEventoService caracterDelEventoService;
 	
 	@Autowired
+	@Qualifier("eventoAreaService")
 	private AreaService areaService;
 	
 	@Autowired
+	@Qualifier("eventoLineaDeNegocioService")
 	private LineaDeNegocioService lineaDeNegocioService;
 	
 	@Autowired
+	@Qualifier("eventoResponsableService")
 	private ResponsableService responsableService;
 	
 	@Autowired
@@ -85,7 +92,7 @@ public class EventoController {
 		return "eventos/crear-evento";
 	}
 	
-	@PostMapping("guardar")
+	@PostMapping("guardar/evento")
 	public String guardarEvento(@Valid @ModelAttribute("evento") EventoCommand command,
 			BindingResult bindingResult, Model model) {
 		
@@ -95,7 +102,7 @@ public class EventoController {
 			model.addAttribute("areas", areaService.listarAreas());
 			model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
 			model.addAttribute("responsables", responsableService.listarResponsables());
-			return "eventos/crear-riesgo";
+			return "eventos/crear-evento";
 		}
 		
 		Evento evento = eventoConverter.convert(command);
@@ -104,8 +111,8 @@ public class EventoController {
 		return "redirect:/eventos/listar";
 	}
 	
-	@PostMapping("modificar")
-	public String guardarModificacion(@Valid @ModelAttribute("evento") EventoCommand command,
+	@PostMapping("modificar/evento")
+	public String guardarModificacionEvento(@Valid @ModelAttribute("evento") EventoCommand command,
 			BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {

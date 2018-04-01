@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.sgre.commands.evento.CaracterDelEventoCommand;
 import com.sgre.model.evento.CaracterDelEvento;
 
-@Component
+@Component(value="eventoCaracterDelEventoToCaracterDelEventoCommandConverter")
 public class CaracterDelEventoToCaracterDelEventoCommandConverter 
 	implements Converter<CaracterDelEvento, CaracterDelEventoCommand> {
 

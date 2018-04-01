@@ -24,7 +24,7 @@
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
       				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html" th:href="@{/riesgos/listar}">Riesgos</a></li>
-      				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html">Eventos</a></li>
+      				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html" th:href="@{/eventos/listar}">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
           			<li><a class="not-active" href="#">Bienvenido Oscar Santamaria</a></li>
@@ -36,7 +36,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<form id="riesgo-form" th:object="${riesgo}" th:action="@{/guardar}" method="post">
+						<form id="riesgo-form" th:object="${riesgo}" th:action="@{/guardar/riesgo}" method="post">
   							<fieldset>
   								 <legend>Crear Riesgo</legend>	
     							<div class="form-group" th:class="${#fields.hasErrors('titulo')} ? 'form-group has-error' : 'form-group'">
@@ -306,7 +306,7 @@
     							</div>
     							<div class="form-group">
       								<label for="observaciones">Observaciones</label>
-      								<textarea class="form-control" id="observaciones" rows="3" th:field="*{observaciones_generales}" ></textarea>
+      								<textarea class="form-control" id="observaciones" rows="3" th:field="*{observaciones_generales}"></textarea>
     							</div>
     							<button type="submit" class="btn btn-primary">Guardar</button>
   							</fieldset>

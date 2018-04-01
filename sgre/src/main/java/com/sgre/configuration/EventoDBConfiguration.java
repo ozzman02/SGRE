@@ -22,11 +22,13 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import com.sgre.service.evento.AreaService;
 import com.sgre.service.evento.CaracterDelEventoService;
+import com.sgre.service.evento.CategoriaEventoPerdidaService;
 import com.sgre.service.evento.EventoService;
 import com.sgre.service.evento.LineaDeNegocioService;
 import com.sgre.service.evento.ResponsableService;
 import com.sgre.service.impl.evento.AreaServiceImpl;
 import com.sgre.service.impl.evento.CaracterDelEventoServiceImpl;
+import com.sgre.service.impl.evento.CategoriaEventoPerdidaServiceImpl;
 import com.sgre.service.impl.evento.EventoServiceImpl;
 import com.sgre.service.impl.evento.LineaDeNegocioServiceImpl;
 import com.sgre.service.impl.evento.ResponsableServiceImpl;
@@ -91,29 +93,33 @@ public class EventoDBConfiguration {
 		return transactionManager;
 	}
 	
-	@Bean
+	@Bean(name="eventoService")
 	public EventoService eventoService() {
 		return new EventoServiceImpl();
 	}
 	
-	@Bean
+	@Bean(name="caracterDelEventoService")
 	public CaracterDelEventoService caracterDelEventoService() {
 		return new CaracterDelEventoServiceImpl();
 	}
 	
-	@Bean
+	@Bean(name="eventoAreaService")
 	public AreaService areaService() {
 		return new AreaServiceImpl();
 	}
 	
-	@Bean
+	@Bean(name="eventoLineaDeNegocioService")
 	public LineaDeNegocioService lineaDeNegocioService() {
 		return new LineaDeNegocioServiceImpl();
 	}
 	
-	@Bean
+	@Bean(name="eventoResponsableService")
 	public ResponsableService responsableService() {
 		return new ResponsableServiceImpl();
 	}
 	
+	@Bean(name="eventoCategoriaEventoPerdidaService")
+	public CategoriaEventoPerdidaService categoriaEventoPerdidaService() {
+		return new CategoriaEventoPerdidaServiceImpl();
+	}
 }

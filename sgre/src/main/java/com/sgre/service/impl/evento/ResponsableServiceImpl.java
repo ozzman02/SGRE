@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sgre.dao.evento.ResponsableRepository;
 import com.sgre.model.evento.Responsable;
@@ -12,6 +13,7 @@ import com.sgre.service.evento.ResponsableService;
 public class ResponsableServiceImpl implements ResponsableService {
 	
 	@Autowired
+	@Qualifier("eventoResponsableRepository")
 	private ResponsableRepository repository;
 	
 	@Override

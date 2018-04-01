@@ -37,12 +37,12 @@ public class EventoCommand {
 	private AreaCommand area_command;
 	
 	@Pattern(regexp = "(^[+]?([0-9]+(?:[\\.][0-9]*)?|\\.[0-9]+)$)", message="El monto debe ser un número decimal válido")
-	private String monto_estimado_perdida;
+	private String monto_estimado_perdida = "0.0";
 	
 	private String tipo_moneda_perdida;
 	
 	@Pattern(regexp = "(^[+]?([0-9]+(?:[\\.][0-9]*)?|\\.[0-9]+)$)", message="El tipo de cambio debe ser un número decimal válido")
-	private String tipo_cambio_perdida;
+	private String tipo_cambio_perdida = "0.0";
 	
 	@NotEmpty
 	private String responsable;

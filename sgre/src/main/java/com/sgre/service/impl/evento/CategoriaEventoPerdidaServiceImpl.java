@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.sgre.dao.evento.CategoriaEventoPerdidaRepository;
 import com.sgre.model.evento.CategoriaEventoPerdida;
@@ -12,6 +13,7 @@ import com.sgre.service.evento.CategoriaEventoPerdidaService;
 public class CategoriaEventoPerdidaServiceImpl implements CategoriaEventoPerdidaService {
 
 	@Autowired
+	@Qualifier("eventoCategoriaEventoPerdidaRepository")
 	private CategoriaEventoPerdidaRepository repository;
 	
 	@Override

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.sgre.commands.evento.CategoriaEventoPerdidaCommand;
 import com.sgre.model.evento.CategoriaEventoPerdida;
 
-@Component
+@Component(value="eventoCategoriaEventoPerdidaToCategoriaEventoPerdidaCommandConverter")
 public class CategoriaEventoPerdidaToCategoriaEventoPerdidaCommandConverter 
 	implements Converter<CategoriaEventoPerdida, CategoriaEventoPerdidaCommand>{
 

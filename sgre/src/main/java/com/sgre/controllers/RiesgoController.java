@@ -103,7 +103,7 @@ public class RiesgoController {
 		return "riesgos/crear-riesgo";
 	}
 	
-	@PostMapping("guardar")
+	@PostMapping("guardar/riesgo")
 	public String guardarRiesgo(@Valid @ModelAttribute("riesgo") RiesgoCommand command, 
 			BindingResult bindingResult, Model model) {
 	
@@ -126,8 +126,8 @@ public class RiesgoController {
 		
 	}
 	
-	@PostMapping("modificar")
-	public String guardarModificacion(@Valid @ModelAttribute("riesgo") RiesgoCommand command, 
+	@PostMapping("modificar/riesgo")
+	public String guardarModificacionRiesgo(@Valid @ModelAttribute("riesgo") RiesgoCommand command, 
 			BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {

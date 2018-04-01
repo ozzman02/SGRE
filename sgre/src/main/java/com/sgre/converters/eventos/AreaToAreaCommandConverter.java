@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.sgre.commands.evento.AreaCommand;
 import com.sgre.model.evento.Area;
 
-@Component
+@Component(value="eventoAreaToAreaCommandConverter")
 public class AreaToAreaCommandConverter implements Converter<Area, AreaCommand> {
 
 	@Override

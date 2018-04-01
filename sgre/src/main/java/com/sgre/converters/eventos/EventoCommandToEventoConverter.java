@@ -3,6 +3,7 @@ package com.sgre.converters.eventos;
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -13,18 +14,23 @@ import com.sgre.model.evento.Evento;
 public class EventoCommandToEventoConverter implements Converter<EventoCommand, Evento> {
 
 	@Autowired
+	@Qualifier("eventoAreaCommandToAreaConverter")
 	private AreaCommandToAreaConverter areaConverter;
 	
 	@Autowired
+	@Qualifier("eventoCaracterDelEventoCommandToCaracterDelEventoConverter")
 	private CaracterDelEventoCommandToCaracterDelEventoConverter caracterDelEventoConverter;
 	
 	@Autowired
+	@Qualifier("eventoCategoriaEventoPerdidaCommandToCategoriaEventoPerdidaConverter")
 	private CategoriaEventoPerdidaCommandToCategoriaEventoPerdidaConverter categoriaEventoPerdidaConverter;
 	
 	@Autowired
+	@Qualifier("eventoLineaDeNegocioCommandToLineaDeNegocioConverter")
 	private LineaDeNegocioCommandToLineaDeNegocioConverter lineaDeNegocioConverter;
 	
 	@Autowired
+	@Qualifier("eventoResponsableCommandToResponsableConverter")
 	private ResponsableCommandToResponsableConverter responsableConverter;
 	
 	@Override
