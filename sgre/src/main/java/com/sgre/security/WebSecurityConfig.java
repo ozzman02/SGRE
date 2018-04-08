@@ -56,19 +56,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/", "/login")
 				.permitAll()
 			.antMatchers("/riesgos/listar")
-				.permitAll()
+				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN", "INCIDENCIAS_ROLE_USER", "EVENTOS_ROLE_USER")
+			.antMatchers("/eventos/listar")
+				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN", "INCIDENCIAS_ROLE_USER", "EVENTOS_ROLE_USER")
 			.antMatchers("/riesgos/{id}/consultar")
-				.permitAll()
+				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN", "INCIDENCIAS_ROLE_USER", "EVENTOS_ROLE_USER")
+			.antMatchers("/eventos/{id}/consultar")
+				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN", "INCIDENCIAS_ROLE_USER", "EVENTOS_ROLE_USER")
 			.antMatchers("/riesgos/{id}/modificar")
 				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN")
 			.antMatchers("/riesgos/{id}/eliminar")
 				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN")
 			.antMatchers("/riesgos/crear")
 				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN")
-			.antMatchers("/eventos/listar")
-				.permitAll()
-			.antMatchers("/eventos/{id}/consultar")
-				.permitAll()
 			.antMatchers("/eventos/{id}/modificar")
 				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN")
 			.antMatchers("/eventos/{id}/eliminar")
@@ -86,7 +86,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout()
 				.permitAll();
 		
-
 	}
 
 }

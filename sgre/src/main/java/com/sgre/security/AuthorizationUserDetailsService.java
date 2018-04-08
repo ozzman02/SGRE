@@ -62,10 +62,6 @@ public class AuthorizationUserDetailsService implements UserDetailsService {
 		roles.add(new SimpleGrantedAuthority(usuario_incidencias.getRol().name()));
 		roles.add(new SimpleGrantedAuthority(usuario_eventos.getRol().name()));
 		
-		for (GrantedAuthority grantedAuthority : roles) {
-			System.out.println(grantedAuthority);
-		}
-		
 		return roles;
 	}
 	
