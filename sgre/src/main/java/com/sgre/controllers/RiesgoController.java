@@ -3,8 +3,6 @@ package com.sgre.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,15 +63,12 @@ public class RiesgoController {
 		return "riesgos/listar-riesgos";
 	}
 	
-	//@PreAuthorize(("hasRole('INCIDENCIAS_ROLE_ADMIN') and hasRole('EVENTOS_ROLE_ADMIN')"))
 	@GetMapping("riesgos/{id}/consultar")
 	public String consultarRiesgo(@PathVariable String id, Model model) {
 		model.addAttribute("riesgo", riesgoService.buscarRiesgoPorId(new Long(id)));
 		return "riesgos/consultar-riesgo";
 	}
 	
-	
-	//@PreAuthorize(("hasRole('INCIDENCIAS_ROLE_ADMIN')"))
 	@GetMapping("riesgos/{id}/modificar")
 	public String modificarRiesgo(@PathVariable String id, Model model) {
 		
@@ -93,7 +88,6 @@ public class RiesgoController {
 		return "riesgos/modificar-riesgo";
 	}
 	
-	//@PreAuthorize(("hasRole('INCIDENCIAS_ROLE_ADMIN')"))
 	@GetMapping("riesgos/crear")
 	public String crearRiesgo(Model model) {
 		
@@ -109,7 +103,6 @@ public class RiesgoController {
 		return "riesgos/crear-riesgo";
 	}
 	
-	//@PreAuthorize(("hasRole('INCIDENCIAS_ROLE_ADMIN')"))
 	@PostMapping("guardar/riesgo")
 	public String guardarRiesgo(@Valid @ModelAttribute("riesgo") RiesgoCommand command, 
 			BindingResult bindingResult, Model model) {
@@ -133,7 +126,6 @@ public class RiesgoController {
 		
 	}
 	
-	//@PreAuthorize(("hasRole('INCIDENCIAS_ROLE_ADMIN')"))
 	@PostMapping("modificar/riesgo")
 	public String guardarModificacionRiesgo(@Valid @ModelAttribute("riesgo") RiesgoCommand command, 
 			BindingResult bindingResult, Model model) {

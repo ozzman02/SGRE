@@ -78,6 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/eventos/crear")
 				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN")
 			.and()
+			.exceptionHandling().accessDeniedPage("/403")
+			.and()
 			.formLogin()
 				.loginPage("/login")
 				.defaultSuccessUrl("/riesgos/listar")
