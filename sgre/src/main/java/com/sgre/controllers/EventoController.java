@@ -21,7 +21,6 @@ import com.sgre.service.evento.CaracterDelEventoService;
 import com.sgre.service.evento.CategoriaEventoPerdidaService;
 import com.sgre.service.evento.EventoService;
 import com.sgre.service.evento.LineaDeNegocioService;
-import com.sgre.service.evento.ResponsableService;
 
 @Controller
 public class EventoController {
@@ -45,10 +44,6 @@ public class EventoController {
 	@Autowired
 	@Qualifier("eventoLineaDeNegocioService")
 	private LineaDeNegocioService lineaDeNegocioService;
-	
-	@Autowired
-	@Qualifier("eventoResponsableService")
-	private ResponsableService responsableService;
 	
 	@Autowired
 	private EventoCommandToEventoConverter eventoConverter;
@@ -76,7 +71,6 @@ public class EventoController {
 		model.addAttribute("caracteres", caracterDelEventoService.listar());
 		model.addAttribute("areas", areaService.listarAreas());
 		model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
-		model.addAttribute("responsables", responsableService.listarResponsables());
 		model.addAttribute("evento", eventoCommand);
 		return "eventos/modificar-evento";
 	}
@@ -87,7 +81,6 @@ public class EventoController {
 		model.addAttribute("caracteres", caracterDelEventoService.listar());
 		model.addAttribute("areas", areaService.listarAreas());
 		model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
-		model.addAttribute("responsables", responsableService.listarResponsables());
 		model.addAttribute("evento", new EventoCommand());
 		return "eventos/crear-evento";
 	}
@@ -101,7 +94,6 @@ public class EventoController {
 			model.addAttribute("caracteres", caracterDelEventoService.listar());
 			model.addAttribute("areas", areaService.listarAreas());
 			model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
-			model.addAttribute("responsables", responsableService.listarResponsables());
 			return "eventos/crear-evento";
 		}
 		
@@ -120,7 +112,6 @@ public class EventoController {
 			model.addAttribute("caracteres", caracterDelEventoService.listar());
 			model.addAttribute("areas", areaService.listarAreas());
 			model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
-			model.addAttribute("responsables", responsableService.listarResponsables());
 			return "eventos/modificar-evento";
 		}
 		

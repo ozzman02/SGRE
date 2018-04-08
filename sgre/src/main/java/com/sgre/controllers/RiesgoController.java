@@ -20,7 +20,6 @@ import com.sgre.service.riesgo.AreaService;
 import com.sgre.service.riesgo.CaracterDelRiesgoService;
 import com.sgre.service.riesgo.CategoriaEventoPerdidaService;
 import com.sgre.service.riesgo.LineaDeNegocioService;
-import com.sgre.service.riesgo.ResponsableService;
 import com.sgre.service.riesgo.RiesgoService;
 import com.sgre.service.riesgo.RiesgoVinculadoService;
 
@@ -44,9 +43,6 @@ public class RiesgoController {
 	
 	@Autowired
 	private LineaDeNegocioService lineaDeNegocioService;
-	
-	@Autowired
-	private ResponsableService responsableService;
 	
 	@Autowired
 	private RiesgoVinculadoService riesgoVinculadoService;
@@ -77,7 +73,6 @@ public class RiesgoController {
 		RiesgoCommand riesgoCommand = commandConverter.convert(riesgo);
 		
 		model.addAttribute("riesgosVinculados", riesgoVinculadoService.listarRiesgosVinculados());
-		model.addAttribute("responsables", responsableService.listarResponsables());
 		model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
 		model.addAttribute("areas", areaService.listarAreas());
 		model.addAttribute("acciones", accionCorrectivaService.listarAcciones());
@@ -92,7 +87,6 @@ public class RiesgoController {
 	public String crearRiesgo(Model model) {
 		
 		model.addAttribute("riesgosVinculados", riesgoVinculadoService.listarRiesgosVinculados());
-		model.addAttribute("responsables", responsableService.listarResponsables());
 		model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
 		model.addAttribute("areas", areaService.listarAreas());
 		model.addAttribute("acciones", accionCorrectivaService.listarAcciones());
@@ -109,7 +103,6 @@ public class RiesgoController {
 	
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("riesgosVinculados", riesgoVinculadoService.listarRiesgosVinculados());
-			model.addAttribute("responsables", responsableService.listarResponsables());
 			model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
 			model.addAttribute("areas", areaService.listarAreas());
 			model.addAttribute("acciones", accionCorrectivaService.listarAcciones());
@@ -133,7 +126,6 @@ public class RiesgoController {
 		if (bindingResult.hasErrors()) {
 			
 			model.addAttribute("riesgosVinculados", riesgoVinculadoService.listarRiesgosVinculados());
-			model.addAttribute("responsables", responsableService.listarResponsables());
 			model.addAttribute("lineas", lineaDeNegocioService.listarLineas());
 			model.addAttribute("areas", areaService.listarAreas());
 			model.addAttribute("acciones", accionCorrectivaService.listarAcciones());
@@ -150,7 +142,6 @@ public class RiesgoController {
 		
 	}
 
-	//@PreAuthorize(("hasRole('INCIDENCIAS_ROLE_ADMIN')"))
 	@GetMapping("riesgos/{id}/eliminar")
 	public String borrarRiesgo(@PathVariable String id) {
 		riesgoService.borrarRiesgoPorId(Long.valueOf(id));

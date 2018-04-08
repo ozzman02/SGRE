@@ -47,8 +47,6 @@ public class EventoCommand {
 	@NotEmpty
 	private String responsable;
 	
-	private ResponsableCommand responsable_command;
-	
 	private String observaciones_generales;
 
 	public String getId() {
@@ -177,14 +175,6 @@ public class EventoCommand {
 
 	public void setResponsable(String responsable) {
 		this.responsable = responsable;
-	}
-
-	public ResponsableCommand getResponsable_command() {
-		return responsable_command;
-	}
-
-	public void setResponsable_command(ResponsableCommand responsable_command) {
-		this.responsable_command = responsable_command;
 	}
 
 	public String getObservaciones_generales() {

@@ -29,9 +29,6 @@ public class RiesgoToRiesgoCommandConverter implements Converter<Riesgo, RiesgoC
 	@Autowired
 	private LineaDeNegocioToLineaDeNegocioCommandConverter lineaDeNegocioConverter;
 	
-	@Autowired 
-	private ResponsableToResponsableCommandConverter responsableConverter;
-	
 	@Autowired
 	private RiesgoVinculadoToRiesgoVinculadoCommandConverter riesgoVinculadoConverter;
 	
@@ -51,27 +48,51 @@ public class RiesgoToRiesgoCommandConverter implements Converter<Riesgo, RiesgoC
 		RiesgoCommand command = new RiesgoCommand();
 		
 		command.setAccion_correctiva(String.valueOf(source.getAccion_correctiva().getId()));
-		command.setAccion_correctiva_command(accionCorrectivaConverter.convert(source.getAccion_correctiva()));
+		
+		command.setAccion_correctiva_command(accionCorrectivaConverter
+				.convert(source.getAccion_correctiva()));
+		
 		command.setArea(String.valueOf(source.getArea().getId()));
-		command.setArea_command(areaConverter.convert(source.getArea()));
+		
+		command.setArea_command(areaConverter
+				.convert(source.getArea()));
+		
 		command.setCaracter_del_riesgo(String.valueOf(source.getCaracter_del_riesgo().getId()));
-		command.setCaracter_del_riesgo_command(caracterDelRiesgoConverter.convert(source.getCaracter_del_riesgo()));
+		
+		command.setCaracter_del_riesgo_command(caracterDelRiesgoConverter
+				.convert(source.getCaracter_del_riesgo()));
+		
 		command.setCategoria_evento_perdida(String.valueOf(source.getCategoria_evento_perdida().getId()));
+		
 		command.setCategoria_evento_perdida_command(categoriaEventoPerdidaConverter
 				.convert(source.getCategoria_evento_perdida()));
+		
 		command.setLinea_de_negocio(String.valueOf(source.getLinea_de_negocio().getId()));
-		command.setLinea_de_negocio_command(lineaDeNegocioConverter.convert(source.getLinea_de_negocio()));
-		command.setResponsable(String.valueOf(source.getResponsable().getId()));
-		command.setResponsable_command(responsableConverter.convert(source.getResponsable()));
+		
+		command.setLinea_de_negocio_command(lineaDeNegocioConverter
+				.convert(source.getLinea_de_negocio()));
+		
+		command.setResponsable(String.valueOf(source.getResponsable()));
+		
 		command.setRiesgo_vinculado(String.valueOf(source.getRiesgo_vinculado().getId()));
-		command.setRiesgo_vinculado_command(riesgoVinculadoConverter.convert(source.getRiesgo_vinculado()));
+		
+		command.setRiesgo_vinculado_command(riesgoVinculadoConverter
+				.convert(source.getRiesgo_vinculado()));
+		
 		command.setAplica_cuenta_contable(source.getAplica_cuenta_contable());
+		
 		command.setImpacto_del_riesgo(source.getImpacto_del_riesgo());
+		
 		command.setDescripcion(source.getDescripcion());
+		
 		command.setFecha_inicio(convertDate(source.getFecha_inicio()));
+		
 		command.setFrecuencia(String.valueOf(source.getFrecuencia()));
+		
 		command.setPlazo_ejecucion(source.getPlazo_ejecucion());
+		
 		command.setProbabilidad(String.valueOf(source.getProbabilidad()));
+		
 		command.setTitulo(source.getTitulo());
 		
 		if (source.getId() != null) {

@@ -26,7 +26,6 @@ import com.sgre.service.impl.riesgo.AreaServiceImpl;
 import com.sgre.service.impl.riesgo.CaracterDelRiesgoServiceImpl;
 import com.sgre.service.impl.riesgo.CategoriaEventoPerdidaServiceImpl;
 import com.sgre.service.impl.riesgo.LineaDeNegocioServiceImpl;
-import com.sgre.service.impl.riesgo.ResponsableServiceImpl;
 import com.sgre.service.impl.riesgo.RiesgoServiceImpl;
 import com.sgre.service.impl.riesgo.RiesgoVinculadoServiceImpl;
 import com.sgre.service.impl.riesgo.UsuarioServiceImpl;
@@ -35,7 +34,6 @@ import com.sgre.service.riesgo.AreaService;
 import com.sgre.service.riesgo.CaracterDelRiesgoService;
 import com.sgre.service.riesgo.CategoriaEventoPerdidaService;
 import com.sgre.service.riesgo.LineaDeNegocioService;
-import com.sgre.service.riesgo.ResponsableService;
 import com.sgre.service.riesgo.RiesgoService;
 import com.sgre.service.riesgo.RiesgoVinculadoService;
 import com.sgre.service.riesgo.UsuarioService;
@@ -131,11 +129,6 @@ public class RiesgoDBConfiguration {
 	@Bean
 	public LineaDeNegocioService lineaDeNegocioService() {
 		return new LineaDeNegocioServiceImpl();
-	}
-	
-	@Bean
-	public ResponsableService responsableService() {
-		return new ResponsableServiceImpl();
 	}
 	
 	@Bean

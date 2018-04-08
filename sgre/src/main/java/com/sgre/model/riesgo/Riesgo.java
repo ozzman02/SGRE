@@ -37,7 +37,7 @@ public class Riesgo {
 	private Integer frecuencia;
 	
 	@Column(name="probabilidad", nullable=false)
-	private BigDecimal probabilidad;
+	private Integer probabilidad;
 	
 	@Column(name="controles_de_riesgo", nullable=true)
 	private String controles_de_riesgo;
@@ -123,9 +123,8 @@ public class Riesgo {
 	@JoinColumn(name="riesgo_vinculado_id")
 	private RiesgoVinculado riesgo_vinculado;
 	
-	@OneToOne
-	@JoinColumn(name="responsable_id")
-	private Responsable responsable;
+	@Column(name="responsable")
+	private String responsable;
 	
 	public Riesgo() {
 		
@@ -163,11 +162,11 @@ public class Riesgo {
 		this.frecuencia = frecuencia;
 	}
 
-	public BigDecimal getProbabilidad() {
+	public Integer getProbabilidad() {
 		return probabilidad;
 	}
 
-	public void setProbabilidad(BigDecimal probabilidad) {
+	public void setProbabilidad(Integer probabilidad) {
 		this.probabilidad = probabilidad;
 	}
 
@@ -347,11 +346,11 @@ public class Riesgo {
 		this.riesgo_vinculado = riesgo_vinculado;
 	}
 
-	public Responsable getResponsable() {
+	public String getResponsable() {
 		return responsable;
 	}
 
-	public void setResponsable(Responsable responsable) {
+	public void setResponsable(String responsable) {
 		this.responsable = responsable;
 	}
 
@@ -390,6 +389,4 @@ public class Riesgo {
 				+ ", riesgo_vinculado=" + riesgo_vinculado + ", responsable=" + responsable + "]";
 	}
 
-	
-	
 }

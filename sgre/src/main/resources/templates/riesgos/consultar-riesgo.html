@@ -8,7 +8,7 @@
     	<!--  <link rel="icon" href="../static/myfavicon.ico" type="image/x-icon" th:href="@{/myfavicon.ico}"/>
 			<link rel="shortcut icon" href="../static/myfavicon.ico" type="image/x-icon" th:href="@{/myfavicon.ico}"/> -->   
     
-    	<title>SGRE - Consultar Riesgos</title>
+    	<title>SGRE - Consultar Incidencias</title>
     	<link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     	<link href="../../static/css/fa-svg-with-js.css" rel="stylesheet" th:href="@{/css/fa-svg-with-js.css}"/> 
     	<link href="../../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>	
@@ -22,11 +22,11 @@
   			</button>
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
-      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html" th:href="@{/riesgos/listar}">Riesgos</a></li>
+      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html" th:href="@{/riesgos/listar}">Incidencias</a></li>
       				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html" th:href="@{/eventos/listar}">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
-          			<li><a th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]!</a></li>
+          			<li><a class="not-active" th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]!</a></li>
             		<li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
             		<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
             			<input hidden="true" type="submit" value="Sign Out"/>
@@ -40,7 +40,7 @@
 					<div class="col-md-12">
 						<form id="riesgo-form" th:object="${riesgo}">
   							<fieldset>
-  								 <legend>Consultar Riesgo</legend>	
+  								 <legend>Consultar Incidencia</legend>	
     							<div class="form-group">
       								<label for="titulo">Título</label>
       								<input type="text" class="form-control" id="titulo" th:value="${riesgo.titulo}" disabled="true" />
@@ -88,17 +88,17 @@
     							<div class="form-group">
       								<label for="frecuencia">Frecuencia</label>
       								<input type="text" class="form-control" id="frecuencia" 
-      									th:value="${riesgo.frecuencia}" disabled="true"/>
+      									th:value="${riesgo.frecuencia}" disabled/>
     							</div>
     							<div class="form-group">
       								<label for="probabilidad">Probabilidad</label>
       								<input type="text" class="form-control" id="probabilidad" 
-      									th:value="${riesgo.probabilidad}" disabled="true"/>
+      									th:value="${riesgo.probabilidad}" disabled/>
     							</div>
     							<div class="form-group">
       								<label for="controlesDeRiesgo">Controles de riesgo</label>
       								<input type="text" class="form-control" id="controlesDeRiesgo" 
-      									th:value="${riesgo.controles_de_riesgo}" disabled="true"/>
+      									th:value="${riesgo.controles_de_riesgo}" disabled/>
     							</div>
     							<div class="form-group">
       								<label for="impactoDelRiesgoSelect">Impacto del riesgo</label>
@@ -111,27 +111,27 @@
     							<div class="form-group">
       								<label for="fechaInicio">Fecha de inicio</label>
       								<input type="date" class="form-control" id="fechaInicio" 
-      									th:value="${riesgo.fecha_inicio}" disabled="true"/>
+      									th:value="${riesgo.fecha_inicio}" disabled/>
     							</div>
     							<div class="form-group">
       								<label for="fechaConclusion">Fecha de conclusión</label>
       								<input type="date" class="form-control" id="fechaConclusion"
-      									th:value="${riesgo.fecha_conclusion}" disabled="true" />
+      									th:value="${riesgo.fecha_conclusion}" disabled />
     							</div>
     							<div class="form-group">
       								<label for="fechaDescubrimiento">Fecha de descubrimiento</label>
       								<input type="date" class="form-control" id="fechaDescubrimiento" 
-      									th:value="${riesgo.fecha_descubrimiento}" disabled="true"/>
+      									th:value="${riesgo.fecha_descubrimiento}" disabled/>
     							</div>
     							<div class="form-group">
       								<label for="fechaRegistroContable">Fecha de registro contable</label>
       								<input type="date" class="form-control" id="fechaRegistroContable" 
-      									th:value="${riesgo.fecha_registro_contable}" disabled="true"/>
+      									th:value="${riesgo.fecha_registro_contable}" disabled/>
     							</div>
     							<div class="form-group">
       								<label for="montoBrutoPerdida">Monto bruto de la pérdida</label>
       								<input type="text" class="form-control" id="montoBrutoPerdida" 
-      									th:value="${riesgo.monto_bruto_perdida}" disabled="true"/>
+      									th:value="${riesgo.monto_bruto_perdida}" disabled/>
     							</div>
     							<div class="form-group">
       								<label for="monedaPerdidaBruta">Tipo de moneda de la pérdida bruta</label>
@@ -144,17 +144,17 @@
     							<div class="form-group">
       								<label for="tipoCambioPerdidaBruta">Tipo de cambio de la pérdida bruta</label>
       								<input type="text" class="form-control" id="tipoCambioPerdidaBruta" 
-      									th:value="${riesgo.tipo_cambio_perdida_bruta}" disabled="true" />
+      									th:value="${riesgo.tipo_cambio_perdida_bruta}" disabled />
     							</div>
     							<div class="form-group">
       								<label for="montoTotalRecuperado">Monto total recuperado</label>
       								<input type="text" class="form-control" id="montoTotalRecuperado"  
-      									th:value="${riesgo.monto_total_recuperado}" disabled="true"/>
+      									th:value="${riesgo.monto_total_recuperado}" disabled/>
     							</div>
     							<div class="form-group">
       								<label for="montoNetoPerdida">Monto neto de la pérdida</label>
       								<input type="text" class="form-control" id="montoNetoPerdida" 
-      									th:value="${riesgo.monto_neto_perdida}" disabled="true" />
+      									th:value="${riesgo.monto_neto_perdida}" disabled />
     							</div>
     							<div class="form-group">
       								<label for="monedaPerdidaNeta">Tipo de moneda de la pérdida neta</label>
@@ -167,7 +167,7 @@
     							<div class="form-group">
       								<label for="tipoCambioPerdidaNeta">Tipo de cambio de la pérdida neta</label>
       								<input type="text" class="form-control" id="tipoCambioPerdidaNeta" 
-      									th:value="${riesgo.tipo_cambio_perdida_neta}" disabled="true" />
+      									th:value="${riesgo.tipo_cambio_perdida_neta}" disabled />
     							</div>
     							<div class="form-group">
       								<label for="aplicaCuentaContable">Aplica cuenta contable</label>
@@ -180,7 +180,7 @@
     							<div class="form-group">
       								<label for="notasCuentaContable">Notas de la cuenta contable</label>
       								<input type="text" class="form-control" id="notasCuentaContable"  
-      									th:value="${riesgo.notas_cuenta_contable}" disabled="true" />
+      									th:value="${riesgo.notas_cuenta_contable}" disabled />
     							</div>
     							<div class="form-group">
       								<label for="accionCorrectiva">Acción Correctiva</label>
@@ -201,15 +201,11 @@
 								<div class="form-group">
       								<label for="plazoEjecucion">Plazo de ejecución</label>
       								<input type="text" class="form-control" id="plazoEjecucion"  
-      									th:value="${riesgo.plazo_ejecucion}" disabled="true"/>
+      									th:value="${riesgo.plazo_ejecucion}" disabled/>
     							</div>    							
     							<div class="form-group">
       								<label for="responsable">Responsable</label>
-      								<select class="form-control" id="responsable" disabled="disabled">
-        								<option th:text="${riesgo.responsable.nombre} + ' ' + ${riesgo.responsable.apellido}" 
-        									th:value="${riesgo.responsable.id}">
-        								</option>
-      								</select>
+      								<input type="text" class="form-control" id="responsable" th:value="${riesgo.responsable}" disabled="true" />
     							</div>
     							<div class="form-group">
       								<label for="observaciones">Observaciones</label>

@@ -22,11 +22,11 @@
   			</button>
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
-      				<li class="nav-item"><a class="nav-link" href="../riesgos/listar-riesgos.html" th:href="@{/riesgos/listar}">Riesgos</a></li>
+      				<li class="nav-item"><a class="nav-link" href="../riesgos/listar-riesgos.html" th:href="@{/riesgos/listar}">Incidencias</a></li>
       				<li class="nav-item active"><a class="nav-link" href="listar-eventos.html" th:href="@{/eventos/listar}">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
-          			<li><a th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]!</a></li>
+          			<li><a class="not-active" th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]!</a></li>
             		<li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
             		<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
             			<input hidden="true" type="submit" value="Sign Out"/>
@@ -107,11 +107,8 @@
     							</div>    							
     							<div class="form-group">
       								<label for="responsable">Responsable</label>
-      								<select class="form-control" id="responsable" disabled>
-        								<option th:text="${evento.responsable.nombre} + ' ' + ${evento.responsable.apellido}" 
-        									th:value="${evento.responsable.id}">
-        								</option>
-      								</select>
+      								<input type="text" class="form-control" id="responsable" th:value="${evento.responsable}" 
+      									placeholder="Responsable" disabled/>
     							</div> 
     							<div class="form-group">
       								<label for="observaciones">Observaciones</label>

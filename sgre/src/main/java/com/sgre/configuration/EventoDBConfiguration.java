@@ -25,14 +25,12 @@ import com.sgre.service.evento.CaracterDelEventoService;
 import com.sgre.service.evento.CategoriaEventoPerdidaService;
 import com.sgre.service.evento.EventoService;
 import com.sgre.service.evento.LineaDeNegocioService;
-import com.sgre.service.evento.ResponsableService;
 import com.sgre.service.evento.UsuarioService;
 import com.sgre.service.impl.evento.AreaServiceImpl;
 import com.sgre.service.impl.evento.CaracterDelEventoServiceImpl;
 import com.sgre.service.impl.evento.CategoriaEventoPerdidaServiceImpl;
 import com.sgre.service.impl.evento.EventoServiceImpl;
 import com.sgre.service.impl.evento.LineaDeNegocioServiceImpl;
-import com.sgre.service.impl.evento.ResponsableServiceImpl;
 import com.sgre.service.impl.evento.UsuarioServiceImpl;
 
 @Configuration
@@ -113,11 +111,6 @@ public class EventoDBConfiguration {
 	@Bean(name="eventoLineaDeNegocioService")
 	public LineaDeNegocioService lineaDeNegocioService() {
 		return new LineaDeNegocioServiceImpl();
-	}
-	
-	@Bean(name="eventoResponsableService")
-	public ResponsableService responsableService() {
-		return new ResponsableServiceImpl();
 	}
 	
 	@Bean(name="eventoCategoriaEventoPerdidaService")

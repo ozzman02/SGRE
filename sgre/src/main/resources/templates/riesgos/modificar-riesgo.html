@@ -8,7 +8,7 @@
     	<!--  <link rel="icon" href="../static/myfavicon.ico" type="image/x-icon" th:href="@{/myfavicon.ico}"/>
 			<link rel="shortcut icon" href="../static/myfavicon.ico" type="image/x-icon" th:href="@{/myfavicon.ico}"/> -->   
     
-    	<title>SGRE - Modificar Riesgos</title>
+    	<title>SGRE - Modificar Incidencias</title>
     	<link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     	<link href="../../static/css/fa-svg-with-js.css" rel="stylesheet" th:href="@{/css/fa-svg-with-js.css}"/> 
     	<link href="../../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>	
@@ -22,11 +22,11 @@
   			</button>
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
-      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html" th:href="@{/riesgos/listar}">Riesgos</a></li>
+      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html" th:href="@{/riesgos/listar}">Incidencias</a></li>
       				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html" th:href="@{/eventos/listar}">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
-          			<li><a th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]!</a></li>
+          			<li><a class="not-active" th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]!</a></li>
             		<li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
             		<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
             			<input hidden="true" type="submit" value="Sign Out"/>
@@ -41,7 +41,7 @@
 						<form id="riesgo-form" th:object="${riesgo}" th:action="@{/modificar/riesgo}" method="post">
   							<fieldset>
   								 <input type="hidden" th:value="${riesgo.id}" name="id"/>
-  								 <legend>Modificar Riesgo</legend>	
+  								 <legend>Modificar Incidencia</legend>	
     							<div class="form-group" th:class="${#fields.hasErrors('titulo')} ? 'form-group has-error' : 'form-group'">
       								<label for="titulo">Título</label>
       								<input type="text" th:field="*{titulo}" th:errorclass="has-error" class="form-control" id="titulo" 
@@ -143,7 +143,7 @@
     							</div>
     							<div class="form-group"  th:class="${#fields.hasErrors('probabilidad')} ? 'form-group has-error' : 'form-group'">
       								<label for="probabilidad">Probabilidad</label>
-      								<input type="text" th:field="*{probabilidad}" th:errorclass="has-error" class="form-control" 
+      								<input type="number" min="1" max="5" th:field="*{probabilidad}" th:errorclass="has-error" class="form-control" 
       									id="probabilidad" placeholder="Probabilidad" th:value="${riesgo.probabilidad}">
       								<span class="help-block" th:if="${#fields.hasErrors('probabilidad')}">
               							<ul>
@@ -322,17 +322,10 @@
 										</ul>
 									</span>
     							</div>    							
-    							<div class="form-group"  th:class="${#fields.hasErrors('responsable')} ? 'form-group has-error' : 'form-group'">
+    							<div class="form-group" th:class="${#fields.hasErrors('responsable')} ? 'form-group has-error' : 'form-group'">
       								<label for="responsable">Responsable</label>
-      								<select class="form-control" id="responsable" th:field="*{responsable}" th:errorclass="has-error">
-        								<option th:if="${riesgo.responsable_command != null}"
-        									th:text="${riesgo.responsable_command.nombre} + ' ' + ${riesgo.responsable_command.apellido}" 
-        									th:value="${riesgo.responsable_command.id}">
-        								</option>
-        								<option value=""></option>
-        								<option th:each="r : ${responsables}" th:value="${r.id}" 
-        									th:text="${r.nombre} + ' ' + ${r.apellido}"></option>
-      								</select>
+      								<input type="text" th:field="*{responsable}" th:errorclass="has-error" class="form-control" id="responsable" 
+      									aria-describedby="" placeholder="Responsable" th:value="${riesgo.responsable}" />
       								<span class="help-block" th:if="${#fields.hasErrors('responsable')}">
               							<ul>
 											<li class="alert" th:each="err : ${#fields.errors('responsable')}" th:text="${err}" />

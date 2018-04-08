@@ -22,12 +22,12 @@
   			</button>
   			<div class="collapse navbar-collapse" id="navbarColor01">
     			<ul class="navbar-nav mr-auto">
-      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html" th:href="@{/riesgos/listar}">Riesgos</a></li>
+      				<li class="nav-item active"><a class="nav-link" href="listar-riesgos.html" th:href="@{/riesgos/listar}">Incidencias</a></li>
       				<li class="nav-item"><a class="nav-link" href="../eventos/listar-eventos.html" th:href="@{/eventos/listar}">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
           			<!--  <li><a class="not-active" href="#">Bienvenido Oscar Santamaria</a></li> -->
-          			<li><a th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]!</a></li>
+          			<li><a class="not-active" th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]</a></li>
           			<!-- <li><a th:inline="text">Bienvenido [[${#httpServletRequest.userPrincipal.authorities}]]!</a></li> -->
             		<li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
             		<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
@@ -39,16 +39,16 @@
 		<section>
 			<div class="container" th:if="${#lists.isEmpty(riesgos)}">
 				<br>
-				<h3 class="text-center">No existen riesgos registrados</h3>
+				<h3 class="text-center">No existen incidencias registradas</h3>
 				<br>
 				<div class="text-center">
-					<a id="btn-crear-riesgo2" href="crear-riesgo.html" th:href="@{/riesgos/crear}" type="button" class="btn btn-primary">Crear Riesgo</a>
+					<a id="btn-crear-riesgo2" href="crear-riesgo.html" th:href="@{/riesgos/crear}" type="button" class="btn btn-primary">Crear incidencia</a>
 				</div>
 			</div>
 			<div class="container" th:if="${not #lists.isEmpty(riesgos)}">
 				<div class="row">
 					<div class="col-md-12">
-						<a id="btn-crear-riesgo" href="crear-riesgo.html" th:href="@{/riesgos/crear}" type="button" class="btn btn-primary">Crear Riesgo</a>
+						<a id="btn-crear-riesgo" href="crear-riesgo.html" th:href="@{/riesgos/crear}" type="button" class="btn btn-primary">Crear Incidencia</a>
 						<form class="form-inline my-2 my-lg-0">
       						<input class="form-control mr-sm-2" type="text" placeholder="Buscar Riesgo">
       						<button class="btn btn-secondary my-2 my-sm-0" type="submit">

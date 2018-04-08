@@ -29,10 +29,6 @@ public class EventoCommandToEventoConverter implements Converter<EventoCommand, 
 	@Qualifier("eventoLineaDeNegocioCommandToLineaDeNegocioConverter")
 	private LineaDeNegocioCommandToLineaDeNegocioConverter lineaDeNegocioConverter;
 	
-	@Autowired
-	@Qualifier("eventoResponsableCommandToResponsableConverter")
-	private ResponsableCommandToResponsableConverter responsableConverter;
-	
 	@Override
 	public Evento convert(EventoCommand source) {
 		
@@ -53,8 +49,7 @@ public class EventoCommandToEventoConverter implements Converter<EventoCommand, 
 		evento.setLinea_de_negocio(lineaDeNegocioConverter
 				.convert(source.getLinea_de_negocio()));
 		
-		evento.setResponsable(responsableConverter
-				.convert(source.getResponsable()));
+		evento.setResponsable(source.getResponsable());
 		
 		evento.setDescripcion(source.getDescripcion());
 		

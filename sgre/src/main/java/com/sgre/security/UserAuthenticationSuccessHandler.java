@@ -8,11 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserAuthenticationSuccessHandler implements ApplicationListener<InteractiveAuthenticationSuccessEvent> {
 
+	@SuppressWarnings("unused")
 	@Override
 	public void onApplicationEvent(InteractiveAuthenticationSuccessEvent event) {
 		
 		UserDetails userDetails = (UserDetails) event.getAuthentication().getPrincipal();
-		System.out.println(userDetails.getAuthorities());
+		//System.out.println(userDetails.getAuthorities());
 		
 	}
 

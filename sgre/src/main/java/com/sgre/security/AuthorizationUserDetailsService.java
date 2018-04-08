@@ -59,9 +59,6 @@ public class AuthorizationUserDetailsService implements UserDetailsService {
 		
 		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
 		
-		System.out.println(usuario_incidencias);
-		System.out.println(usuario_eventos);
-		
 		roles.add(new SimpleGrantedAuthority(usuario_incidencias.getRol().name()));
 		roles.add(new SimpleGrantedAuthority(usuario_eventos.getRol().name()));
 		

@@ -31,9 +31,6 @@ public class RiesgoCommandToRiesgoConverter implements Converter<RiesgoCommand, 
 	private LineaDeNegocioCommandToLineaDeNegocioConverter lineaDeNegocioConverter;
 	
 	@Autowired
-	private ResponsableCommandToResponsableConverter responsableConverter;
-	
-	@Autowired
 	private RiesgoVinculadoCommandToRiesgoVinculadoConverter riesgoVinculadoConverter;
 		
 	private Date convertDate(String date) {
@@ -65,20 +62,34 @@ public class RiesgoCommandToRiesgoConverter implements Converter<RiesgoCommand, 
 		Riesgo riesgo = new Riesgo();
 		
 		riesgo.setAccion_correctiva(accionCorrectivaConverter.convert(source.getAccion_correctiva()));
+		
 		riesgo.setArea(areaConverter.convert(source.getArea()));
+		
 		riesgo.setCaracter_del_riesgo(caracterDelRiesgoConverter.convert(source.getCaracter_del_riesgo()));
+		
 		riesgo.setCategoria_evento_perdida(categoriaEventoPerdidaConverter
 				.convert(source.getCategoria_evento_perdida()));
+		
 		riesgo.setLinea_de_negocio(lineaDeNegocioConverter.convert(source.getLinea_de_negocio()));
-		riesgo.setResponsable(responsableConverter.convert(source.getResponsable()));
+		
+		riesgo.setResponsable(source.getResponsable());
+		
 		riesgo.setRiesgo_vinculado(riesgoVinculadoConverter.convert(source.getRiesgo_vinculado()));
+		
 		riesgo.setAplica_cuenta_contable(source.getAplica_cuenta_contable());
+		
 		riesgo.setImpacto_del_riesgo(source.getImpacto_del_riesgo());
+		
 		riesgo.setDescripcion(source.getDescripcion());
+		
 		riesgo.setFecha_inicio(convertDate(source.getFecha_inicio()));
+		
 		riesgo.setFrecuencia(Integer.valueOf(source.getFrecuencia()));
+		
 		riesgo.setPlazo_ejecucion(source.getPlazo_ejecucion());
-		riesgo.setProbabilidad(new BigDecimal(source.getProbabilidad()));
+		
+		riesgo.setProbabilidad(Integer.valueOf(source.getProbabilidad()));
+		
 		riesgo.setTitulo(source.getTitulo());
 		
 		if (source.getId() != null) {

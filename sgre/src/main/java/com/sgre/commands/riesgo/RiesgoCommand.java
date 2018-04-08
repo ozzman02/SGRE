@@ -22,8 +22,7 @@ public class RiesgoCommand {
 	private String frecuencia = "1";
 	
 	@NotEmpty
-	@Pattern(regexp = "(^[+]?([0-9]+(?:[\\.][0-9]*)?|\\.[0-9]+)$)", message="La probabilidad debe ser un número decimal válido")
-	private String probabilidad = "0.0";
+	private String probabilidad;
 	
 	private String controles_de_riesgo;
 	
@@ -102,8 +101,6 @@ public class RiesgoCommand {
 	
 	@NotEmpty
 	private String responsable;
-
-	private ResponsableCommand responsable_command;
 
 	public String getId() {
 		return id;
@@ -391,37 +388,6 @@ public class RiesgoCommand {
 
 	public void setResponsable(String responsable) {
 		this.responsable = responsable;
-	}
-
-	public ResponsableCommand getResponsable_command() {
-		return responsable_command;
-	}
-
-	public void setResponsable_command(ResponsableCommand responsable_command) {
-		this.responsable_command = responsable_command;
-	}
-
-	@Override
-	public String toString() {
-		return "RiesgoCommand [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", frecuencia="
-				+ frecuencia + ", probabilidad=" + probabilidad + ", controles_de_riesgo=" + controles_de_riesgo
-				+ ", impacto_del_riesgo=" + impacto_del_riesgo + ", fecha_inicio=" + fecha_inicio
-				+ ", fecha_conclusion=" + fecha_conclusion + ", fecha_descubrimiento=" + fecha_descubrimiento
-				+ ", fecha_registro_contable=" + fecha_registro_contable + ", monto_bruto_perdida="
-				+ monto_bruto_perdida + ", tipo_moneda_perdida_bruta=" + tipo_moneda_perdida_bruta
-				+ ", tipo_cambio_perdida_bruta=" + tipo_cambio_perdida_bruta + ", monto_total_recuperado="
-				+ monto_total_recuperado + ", monto_neto_perdida=" + monto_neto_perdida + ", tipo_moneda_perdida_neta="
-				+ tipo_moneda_perdida_neta + ", tipo_cambio_perdida_neta=" + tipo_cambio_perdida_neta
-				+ ", aplica_cuenta_contable=" + aplica_cuenta_contable + ", notas_cuenta_contable="
-				+ notas_cuenta_contable + ", plazo_ejecucion=" + plazo_ejecucion + ", observaciones_generales="
-				+ observaciones_generales + ", categoria_evento_perdida=" + categoria_evento_perdida
-				+ ", categoria_evento_perdida_command=" + categoria_evento_perdida_command + ", linea_de_negocio="
-				+ linea_de_negocio + ", linea_de_negocio_command=" + linea_de_negocio_command + ", caracter_del_riesgo="
-				+ caracter_del_riesgo + ", caracter_del_riesgo_command=" + caracter_del_riesgo_command + ", detalle="
-				+ detalle + ", area=" + area + ", area_command=" + area_command + ", accion_correctiva="
-				+ accion_correctiva + ", accion_correctiva_command=" + accion_correctiva_command + ", riesgo_vinculado="
-				+ riesgo_vinculado + ", riesgo_vinculado_command=" + riesgo_vinculado_command + ", responsable="
-				+ responsable + ", responsable_command=" + responsable_command + "]";
 	}
 
 }

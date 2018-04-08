@@ -16,7 +16,6 @@ import com.sgre.model.evento.Area;
 import com.sgre.model.evento.CaracterDelEvento;
 import com.sgre.model.evento.CategoriaEventoPerdida;
 import com.sgre.model.evento.LineaDeNegocio;
-import com.sgre.model.evento.Responsable;
 
 @Entity
 @Table(name = "evento")
@@ -60,9 +59,8 @@ public class Evento {
 	@Column(name="tipo_cambio_perdida", nullable=true)
 	private BigDecimal tipo_cambio_perdida;
 	
-	@OneToOne
-	@JoinColumn(name="responsable_id")
-	private Responsable responsable;
+	@Column(name="responsable")
+	private String responsable;
 	
 	@Column(name="observaciones_generales", nullable=true)
 	private String observaciones_generales;
@@ -155,11 +153,11 @@ public class Evento {
 		this.tipo_cambio_perdida = tipo_cambio_perdida;
 	}
 
-	public Responsable getResponsable() {
+	public String getResponsable() {
 		return responsable;
 	}
 
-	public void setResponsable(Responsable responsable) {
+	public void setResponsable(String responsable) {
 		this.responsable = responsable;
 	}
 
@@ -180,7 +178,5 @@ public class Evento {
 				+ ", tipo_cambio_perdida=" + tipo_cambio_perdida + ", responsable=" + responsable
 				+ ", observaciones_generales=" + observaciones_generales + "]";
 	}
-
-	
 	
 }
