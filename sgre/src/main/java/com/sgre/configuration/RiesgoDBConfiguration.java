@@ -29,6 +29,7 @@ import com.sgre.service.impl.riesgo.LineaDeNegocioServiceImpl;
 import com.sgre.service.impl.riesgo.ResponsableServiceImpl;
 import com.sgre.service.impl.riesgo.RiesgoServiceImpl;
 import com.sgre.service.impl.riesgo.RiesgoVinculadoServiceImpl;
+import com.sgre.service.impl.riesgo.UsuarioServiceImpl;
 import com.sgre.service.riesgo.AccionCorrectivaService;
 import com.sgre.service.riesgo.AreaService;
 import com.sgre.service.riesgo.CaracterDelRiesgoService;
@@ -37,6 +38,7 @@ import com.sgre.service.riesgo.LineaDeNegocioService;
 import com.sgre.service.riesgo.ResponsableService;
 import com.sgre.service.riesgo.RiesgoService;
 import com.sgre.service.riesgo.RiesgoVinculadoService;
+import com.sgre.service.riesgo.UsuarioService;
 
 @Configuration
 @PropertySource({ "classpath:persistence-multiple-db.properties" })
@@ -139,6 +141,11 @@ public class RiesgoDBConfiguration {
 	@Bean
 	public RiesgoVinculadoService riesgoVinculadoService() {
 		return new RiesgoVinculadoServiceImpl();
+	}
+	
+	@Bean
+	public UsuarioService usuarioService() {
+		return new UsuarioServiceImpl();
 	}
 	
 }

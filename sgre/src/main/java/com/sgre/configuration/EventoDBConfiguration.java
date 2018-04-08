@@ -26,12 +26,14 @@ import com.sgre.service.evento.CategoriaEventoPerdidaService;
 import com.sgre.service.evento.EventoService;
 import com.sgre.service.evento.LineaDeNegocioService;
 import com.sgre.service.evento.ResponsableService;
+import com.sgre.service.evento.UsuarioService;
 import com.sgre.service.impl.evento.AreaServiceImpl;
 import com.sgre.service.impl.evento.CaracterDelEventoServiceImpl;
 import com.sgre.service.impl.evento.CategoriaEventoPerdidaServiceImpl;
 import com.sgre.service.impl.evento.EventoServiceImpl;
 import com.sgre.service.impl.evento.LineaDeNegocioServiceImpl;
 import com.sgre.service.impl.evento.ResponsableServiceImpl;
+import com.sgre.service.impl.evento.UsuarioServiceImpl;
 
 @Configuration
 @PropertySource({ "classpath:persistence-multiple-db.properties" })
@@ -122,4 +124,10 @@ public class EventoDBConfiguration {
 	public CategoriaEventoPerdidaService categoriaEventoPerdidaService() {
 		return new CategoriaEventoPerdidaServiceImpl();
 	}
+	
+	@Bean(name="eventoUsuarioService")
+	public UsuarioService usuarioService() {
+		return new UsuarioServiceImpl();
+	}
+	
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<!-- <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> -->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<head>
     	<meta charset="UTF-8"/>
     	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -27,8 +26,11 @@
       				<li class="nav-item active"><a class="nav-link" href="listar-eventos.html" th:href="@{/eventos/listar}">Eventos</a></li>
     			</ul>
     			<ul id="my-navbar-right" class="nav navbar-nav navbar-right">
-          			<li><a class="not-active" href="#">Bienvenido Oscar Santamaria</a></li>
-            		<li><a href="#">Logout</a></li>
+          			<li><a th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]!</a></li>
+            		<li><a href="javascript: document.logoutForm.submit()">Logout</a></li>
+            		<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+            			<input hidden="true" type="submit" value="Sign Out"/>
+            		</form>
           		</ul>
   			</div>
 		</nav>

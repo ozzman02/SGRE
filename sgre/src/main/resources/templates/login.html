@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<!--  <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> -->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<head>
     	<meta charset="UTF-8"/>
     	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -18,8 +17,8 @@
       		<form class="form-signin" th:action="@{/login}" method="post" >
         		<h2 class="form-signin-heading text-center">SGRE</h2>
         		<h2 class="form-signin-heading text-center">Sistema de Gestión de Riesgos y Eventos</h2>
-        		<!--  <div class="text-center" th:if="${param.error}">Usuario y password incorrectos</div>
-					<div class="text-center" th:if="${param.logout}">Sesión terminada</div> -->
+        		<div class="text-center" th:if="${param.error}">Usuario y password incorrectos</div>
+					<div class="text-center" th:if="${param.logout}">Sesión terminada</div>
         		
         		<label for="inputUsuario" class="sr-only">Usuario</label>
         		<input type="text" id="inputUsuario" class="form-control" name="username" 
