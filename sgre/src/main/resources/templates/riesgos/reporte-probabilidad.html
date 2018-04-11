@@ -58,18 +58,15 @@
 						<label id="promedio-label">Promedio de Probabilidad: </label>
 						<p id="probabilidad-value" th:text="${promedioDeProbabilidad}" />
       							
-						<form class="form-inline my-2 my-lg-0">
-      						<input class="form-control mr-sm-2" type="text" placeholder="Buscar Riesgo">
-      						<button class="btn btn-secondary my-2 my-sm-0" type="submit">
-      							<i class="fas fa-search"></i>
-      						</button>
+						<form class="form-inline my-2 my-lg-0" role="search">
+      						<input class="form-control mr-sm-2 search-form" type="text" placeholder="Buscar Incidencia">
     					</form>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 table-div" th:if="${not #lists.isEmpty(riesgos)}">
 						<table class="table table-striped text-center">
-							<thead>
+							<thead class="table-success">
 								<tr>
                   					<th>Id</th>
                   					<th>Título</th>
@@ -78,7 +75,7 @@
                 				</tr>
 							</thead>
 							<tbody>
-								<tr th:each="riesgo : ${riesgos}">
+								<tr class="table-dark" th:each="riesgo : ${riesgos}">
 									<td th:text="${riesgo.id}">6</td>
 									<td th:text="${riesgo.titulo}">Riesgo de prueba6</td>
 									<td th:text="${riesgo.descripcion}">Descripción de prueba6</td>
@@ -96,5 +93,6 @@
     	<script src="../../static/js/fontawesome-all.js" th:src="@{/js/fontawesome-all.js}"></script>
     	<script src="../../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
     	<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    	<script src="../../static/js/search.js" th:src="@{/js/search.js}"></script>
   	</body>
 </html>
