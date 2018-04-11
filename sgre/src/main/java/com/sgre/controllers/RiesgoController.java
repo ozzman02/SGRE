@@ -1,5 +1,7 @@
 package com.sgre.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import com.sgre.service.riesgo.CategoriaEventoPerdidaService;
 import com.sgre.service.riesgo.LineaDeNegocioService;
 import com.sgre.service.riesgo.RiesgoService;
 import com.sgre.service.riesgo.RiesgoVinculadoService;
+import com.sgre.util.Util;
 
 @Controller
 public class RiesgoController {
@@ -57,6 +60,15 @@ public class RiesgoController {
 	public String listarRiesgos(Model model) {
 		model.addAttribute("riesgos", riesgoService.listarRiesgos());
 		return "riesgos/listar-riesgos";
+	}
+	
+	@GetMapping("riesgos/reporte-probabilidad")
+	public String reporteDeProbabilidad(Model model) {
+		List<Riesgo> riesgos = riesgoService.listarRiesgos();
+		Double promedioDeProbabilidad = Util.promedioDeProbabilidad(riesgos);
+		model.addAttribute("riesgos", riesgos);
+		model.addAttribute("promedioDeProbabilidad", promedioDeProbabilidad);
+		return "riesgos/reporte-probabilidad";
 	}
 	
 	@GetMapping("riesgos/{id}/consultar")

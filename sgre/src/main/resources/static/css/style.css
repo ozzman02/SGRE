@@ -95,6 +95,16 @@ body#login h2 {
 	margin-top: 40px;	
 }
 
+#promedio-label {
+	margin-top: 40px;
+	font-style: italic;	
+}
+
+#probabilidad-value {
+	display: inline;
+	font-style: italic;
+}
+
 #btn-crear-evento {
 	margin-top: 40px;	
 }

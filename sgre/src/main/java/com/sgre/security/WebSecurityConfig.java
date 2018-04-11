@@ -57,6 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 			.antMatchers("/riesgos/listar")
 				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN", "INCIDENCIAS_ROLE_USER", "EVENTOS_ROLE_USER")
+			.antMatchers("/riesgos/reporte-probabilidad")
+				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN", "INCIDENCIAS_ROLE_USER", "EVENTOS_ROLE_USER")
 			.antMatchers("/eventos/listar")
 				.hasAnyAuthority("INCIDENCIAS_ROLE_ADMIN", "EVENTOS_ROLE_ADMIN", "INCIDENCIAS_ROLE_USER", "EVENTOS_ROLE_USER")
 			.antMatchers("/riesgos/{id}/consultar")
